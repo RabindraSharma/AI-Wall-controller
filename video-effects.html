@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+    <head>
+        <title>Video Effects Tiles</title>
+        <link rel="stylesheet" href="resources/css/video-effects.css">
+        <link rel="stylesheet" href="resources/css/bootstrapv4.5.1.css">
+        <link rel="stylesheet" href="resources/css/font-awesome.css">
+       	<link rel="stylesheet" href="resources/metro/css/metro-all.min.css">
+        <link rel="stylesheet" href="resources/css/font-awesome5.7.0.css">
+        <script src="resources/js/d3.v4.min.js"></script>
+    </head>
+    
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-sm bg-dark navbar-fixed-top">
+                <div class="container-fluid">
+                    <!-- Links -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Tiles Video Effects</a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+        </header>
+        <div class="container-fluid main">
+            <div class="row bg-light p-2">
+                <div class="col-md-2 col-sm-2 col-lg-2">
+                    <div class="d-flex-block">
+                        <img src="resources/images/wall.jpg" alt="" class="src">
+                            <div id="display" class="text-muted"></div>
+                        <img src="resources/images/record.png"/>ScreenShot & Recordings
+                    </div>
+                   
+                </div>
+                <div class="col-md-10 col-sm-10">
+                    <div container class="container source-l">
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div id="successDialog"></div>
+
+
+
+<!-- Modal: modalAbandonedCart-->
+<div class="modal fade right" id="TilesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true" data-backdrop="false">
+  <div class="modal-dialog modal-side modal-center modal-notify modal-info bg-info" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header bg-light text-info">
+            <h3>Ornament Configuration</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" class="white-text text-danger">&times;</span>
+        </button>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body modal-auto">
+            <div class="container">
+                <div class="form-group">
+                    <form action="" name="tiles">
+                        <div class="row">
+                                 <div class="col-md-10">
+                                    <input type="checkbox" id="displaycheck" class="checksbox" data-role="popover" data-popover-text="If this is unchecked, ornament will not be applied.." data-popover-position="bottom" >Display Ornament
+                                </div>
+                                
+                                <div class="col-md-12">
+                                    <label for="dsplay">Height (%)</label>
+                                    <input type="number" id="heights" value="1" min="1" max="50" class="form-control" data-role="popover" data-popover-text="Percentage of height width where ornament need to be shown" data-popover-position="bottom" >
+                                </div>
+                               
+                                <div class="col-md-12">
+                                    <label for="dsplay">Forground Color</label>
+                                    <input type="color" id="forgroundV" value="#ffffff" class="form-control">
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="background">Background Color</label>
+                                    <input type="color" id="backgroundV" value="#000000"  class="form-control">
+                                </div>
+                                <div class="col-md-12">
+                                    <input type="checkbox" id="accept" class="checksbox" data-role="popover" data-popover-text="If this is checked, source name will be displayed.." data-popover-position="bottom">Show Source Name(<span id="sourceName"></span>)
+                                </div>
+                                <div class="col-md-12">
+                                    <input type="checkbox" id="displayBorder" class="checksbox" data-role="popover" data-popover-text="If this is checked, border will be at four sides.." data-popover-position="bottom"> <span>Display Border(If checked, border will be displayed at all four sides)</span>
+                                </div>
+                                <div class="col-md-12">
+                                    <input type="checkbox" id="blink" class="checksbox"> <span>Blink</span>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label for="dsplay">Blink Duration</label>
+                                    <input type="number" id="duration" value="1" min="1" max="60" class="form-control">
+                                </div>
+                                <div class="col-md-12">
+                                    <button class="btn btn-primary btn-sm float-right" id="indicator">Add Indicator</button>
+                                </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="justify-content-center table-responsive table-hover">
+                                <table class="table-bordered" id="indicateTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Type</th>
+                                            <th>Forground</th>
+                                            <th>Background</th>
+                                            <th>Logo Path</th>
+                                            <th>Date Format</th>
+                                            <th>Html String</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                    <tfoot></tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                 </div>
+            </div>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-right">
+        <button type="button" class="btn btn-light float-right" id="cnfg">Apply</button>
+        <!--<button type="button" class="btn btn-outline-info waves-effect float-right" data-dismiss="modal">Cancel</button>-->
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!-- Modal: modalAbandonedCart->
+
+    <!-- Modal: modalAbandonedCart-->
+<div class="modal fade right" id="Indicators" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true" data-backdrop="false">
+<div class="modal-dialog modal-side modal-center modal-notify modal-info bg-info" role="document">
+  <!--Content-->
+  <div class="modal-content">
+    <!--Header-->
+    <div class="modal-header bg-light text-info">
+          <h3>Indicator Configuration</h3>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true" class="text-danger">&times;</span>
+      </button>
+    </div>
+
+    <!--Body-->
+    <div class="modal-body">
+          <div class="container">
+              <div class="form-group">
+                  <!--<form action="" name="indicator">-->
+                      <div class="row p-2">
+                              <div class="col-md-12">
+                                  <label for="type">Types</label>
+                                  <select name="indicator-type" id="type" class="form-control">
+                                      <option value="" selected>Select type</option>
+                                      <option value="logo">logo</option>
+                                      <option value="date">date</option>
+                                      <option value="html">html</option>
+                                  </select>
+                                  <span class="text-danger" id="intype"></span>
+                              </div>
+                              <div class="col-md-12">
+                                  <label for="fog">Forground Color</label>
+                                  <input type="color"    class="form-control forground">
+                              </div>
+                              
+                              <div class="col-md-12">
+                                  <label for="back">Background Color</label>
+                                  <input type="color"    class="form-control background">
+                              </div>
+                              <div class="col-md-12" id="logo">
+                                  <label for="logo">Logo Path</label>
+                                  <input type="text" id="path" required placeholder="Please enter your full file/images path" class="form-control" required="required">
+                                  <span class="text-danger" id="indPath"></span>
+                            </div>
+
+                              <div class="col-md-12" id="date">
+                                <label for="formate">Date Format</label>
+                                <input type="text" id="date-format" value="yyyy-MM-dd'T'HH:mm:ss Z" placeholder="Enter date format[yyyy-MM-dd'T'HH:mm:ss Z]" class="form-control">
+                                <span><a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html">For help?</a></span>
+                               
+                            </div>
+
+                            <div class="col-md-12" id="html">
+                                <label for="html">Html String</label>
+                                <input type="text" id="html-string" required placeholder="Input* HTML string <span> Welcome to tiles technology</span>" class="form-control">
+                               <span id="indHtml" class="text-danger"></span>
+                            </div>
+                      </div>
+                      
+        <!--</form>-->
+              </div>
+          </div>
+    </div>
+
+    <!--Footer-->
+    <div class="modal-footer justify-content-right">
+      <button type="button" class="btn btn-info float-right" id="saveInd">Save</button>
+      <button type="button" class="btn btn-outline-info waves-effect float-right" data-dismiss="modal">Cancel</button>
+    </div>
+  </div>
+  <!--/.Content-->
+</div>
+</div>
+
+<!-- Modal: modalAbandonedCart-->
+
+        <footer class="footer">
+            <div class="container" >
+                <p>All Rights Reserved!&copy; 2020</p>
+            </div>
+        </footer>
+
+        <script src="resources/js/jquery.min.js"></script>
+        <script src="resources/js/bootstrap4.5.1.min.js"></script>
+        <script src="resources/metro/js/metro.min.js"></script>
+        <script src="resources/js/video-effects.js"></script>
+        <script src="resources/js/d3.v4.min.js"></script>
+        <script src="resources/js/d3-selection-multi.v1.min.js"></script>
+    
+    </body>
+</html>

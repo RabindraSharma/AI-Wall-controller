@@ -1,0 +1,30 @@
+<p>Layout Management( Pin-{{pin}}  Code-{{projectcode}} )</p>
+<div id="sidebar" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  	<a href="JavaScript:void(0);" onclick="openconfiguration()"><img src="resources/images/settings.png"/>Configuration</a>
+  	<a href="app/gui/download/da"><img src="resources/images/download.png"/>Download Client Agent</a>
+  	<!-- <a ng-if="token.indexOf('admin') > -1"  href="app/gui/download/da"><img src="resources/images/download.png"/>Download Client Agent</a> -->
+  	<a ng-if="token.indexOf('admin') > -1" href="app/gui/download/raspberry/dropzone/package"><img src="resources/images/pi.ico"/>Download PI Package</a>
+  	<a ng-if="token.indexOf('admin') > -1" href="app/gui/download/raspberry/agent/package"><img src="resources/images/download.png"/>Download PI Agent</a>
+    <a ng-if="token.indexOf('admin') > -1"  href="autolayout.html"><img src="resources/images/autolayouts.png"/>Load AutoLayouts</a>
+	<a ng-if="token.indexOf('admin') > -1"  href="user-forms.html"><img src="resources/images/useradd.png"/>AddUser</a>
+	<a ng-if="token.indexOf('admin') > -1"  href="role-form.html"><img src="resources/images/role.png"/>AddRole</a>
+	<a ng-if="token.indexOf('admin') > -1"  href="user-role.html"><img src="resources/images/user_resource.png"/>Map User To Role</a>
+	<a ng-if="token.indexOf('admin') > -1"  href="source-role-forms.html"><img src="resources/images/role_resource.png"/>Map Role To Resource</a>
+	<a ng-if="token.indexOf('admin') > -1"  href="displayzone-role-forms.html"><img src="resources/images/user_displayzone.png"/>Map User To DisplayZone</a>
+	<a ng-if="token.indexOf('admin') > -1" href="app/backup"><img src="resources/images/download.png" />BackUp</a>
+	<a ng-if="token.indexOf('admin') > -1" href="#" id="file" data-toggle="modal" data-target="#fileModel"><img src="resources/images/upload.png"/>Restore</a>
+	<a href="schedule.html"><img src="resources/images/schedule.png"/>Schedules</a>
+	<a ng-if="token.indexOf('admin') > -1" href="scenerio.html"><img src="resources/images/scenario.png"/>Scenerios</a>
+	<a ng-if="token.indexOf('admin') > -1" href="digital-signage.html"><img src="resources/images/digital-signage.png"/>Digital Signage Templates</a>
+	<a ng-if="token.indexOf('admin') > -1" href="display-copy.html"><img src="resources/images/copy.png"/>Display Actions</a>
+	<a ng-if="token.indexOf('admin') > -1" href="intrusion-source.html"><img src="resources/images/copy.png"/>Intrusion</a>
+</div>
+<div class="main">
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Sidebar</span>
+<a href="index.html"><img src="resources/images/logout.png" class="float-right p-2"/></a>
+<a href="layout.html"><img src="resources/images/home.png" class="float-right p-2"/></a> 
+<!-- <a ng-if="token.indexOf('admin') > -1" href="layout.html"> <img src="resources/images/home.png" class="pull-right"/></a> -->
+</div>
+
+

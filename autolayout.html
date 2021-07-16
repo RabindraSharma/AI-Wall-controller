@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<!-- build:css(.) styles/vendor.css -->
+<!-- bower:css -->
+<link rel="stylesheet" href="resources/css/bootstrap.css" />
+<link rel="icon" href="resources/images/icons/abps.png" type="image/png">
+
+<!-- endbower -->
+<!-- endbuild -->
+<!-- build:css(.tmp) styles/main.css -->
+<link rel="stylesheet" href="resources/css/style.css">
+<link rel="stylesheet" type="text/css" href="resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="resources/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<link rel="stylesheet" href="resources/css/sidebar.css">
+<!-- endbuild -->
+</head>
+
+
+<body id="bodycontainer"  ng-app="autolayoutapp" ng-controller="autolayoutcontroller" ng-init="loadDisplaysSources()">
+	<!-- Add your site or application content here -->
+	<header>
+		<div ng-include="'include/sidebar.html'"></div>
+	</header>
+
+	<div container class="container" id="container">
+		
+		<table class="tftable" border="0">
+			<tr ng-repeat="autolayoutdisplay in autolayoutsDisplay.autolayoutsDisplay">
+				<td><img src="resources/images/wall.jpg">
+					<p>{{ autolayoutdisplay.display |limitTo: 20}}</p></td>
+				<td>
+					<div class="custom_scrollbar">
+						<ul>
+							<li ng-repeat="autolayout in autolayoutdisplay.autolayouts">
+							<a 
+								class="btn btn-raised btn-primary"  ng-click="loadautolayout(autolayoutdisplay.display,autolayout.layoutweb)" title="{{autolayout.layouttitle}}">{{autolayout.layoutname}}</a>
+							</li>
+						</ul>
+						<ul>
+							<li>
+							<a ng-click="unsharedefaultlayout(autolayoutdisplay.display)" class="btn btn-icon btn-danger">UnshareAll
+							  <span class="icon icon-sm fa fa-window-close"></span>
+							</a>
+							</li>
+							
+						</ul>
+						<div>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<footer>
+		<div class="inside">
+			<a href="http://www.com/"  target="_blank">
+				<!-- Recordings Archive </a> -->About Us</a>
+			<p>
+				2018, All rights reserved.<br>
+			</p>
+		</div>
+	</footer>
+
+
+
+
+
+	<!-- build:js(.) scripts/vendor.js -->
+	<!-- bower:js -->
+	<script src="resources/js/jquery-3.3.1.min.js"></script>
+	<script src="resources/js/angular.min.js"></script>
+	<script src="resources/js/popper.min.js"></script>
+	<script src="resources/js/bootstrap.js"></script>
+	<script src="resources/js/angular-route.js"></script>
+	<!-- endbower -->
+	<!-- endbuild -->
+
+	<!-- build:js({.tmp,app}) scripts/scripts.js -->
+	<script src="resources/js/autolayout.js"></script>
+	<script src="resources/scripts/controllers/autolayoutangular.js"></script>
+	<script src="resources/js/sidebar.js" ></script>
+
+	<!-- endbuild -->
+</body>
+</html>
+

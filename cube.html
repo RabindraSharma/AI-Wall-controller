@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cube</title>
+<link href="resources/css/swaper-min.css" rel="stylesheet"/>
+<!-- Demo styles -->
+<style>
+    html,
+    body {
+      position: relative;
+      height: 100%;
+    }
+
+    body {
+      background: #fff;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    .swiper-container {
+      width: 150px;
+      height: 150px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      
+      margin-left: -150px;
+      margin-top: -150px;
+    }
+
+    .swiper-slide {
+      background-position: center;
+      background-size: cover;
+    }
+  </style>
+</head>
+<body style="background-color:aquamarine ;">
+    <!-- Swiper -->
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" style="background-image:url('./img/ashish.jpg')" onclick="goToPage();"></div>
+      <div class="swiper-slide" style="background-image:url('./img/berlin.jpg')"></div>
+      <div class="swiper-slide" style="background-image:url('./img/prof.jpg')"></div>
+      <div class="swiper-slide" style="background-image:url('./img/steveoni.JPG')"></div>
+      <div class="swiper-slide" style="background-image:url('./img/tokyo1.jpg')"></div>
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+  </div>
+	
+    <script src="resources/js/swaper.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+          effect: 'cube',
+          grabCursor: true,
+          autoplay:{
+                delay:2000
+          },
+          cubeEffect:{
+            shadow: true,
+            slideShadows: true,
+            shadowOffset: 20,
+            shadowScale: 0.94,
+          },
+          pagination: {
+            el: '.swiper-pagination',
+          },
+        });
+
+        function goToPage(){
+            window.location.href ='https://localhost:8469/logical-display.html';
+        }
+
+      </script>
+</body>
+</html>

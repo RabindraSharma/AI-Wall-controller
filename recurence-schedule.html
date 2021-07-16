@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+	<head>
+		<title>Zone-Schedule</title>
+		<!-- Added bootstrap css links-->
+		<link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css">
+		<script src="resources/js/jquery-3.3.1.min.js"></script>
+		<script src="resources/js/bootstrap.min.js"></script>
+		<script src="resources/js/jquery.datetimepicker.full.js"></script>
+		<script src="resources/js/printdateformat.js"></script>
+		<link rel="stylesheet" href="resources/css/bootstrap.css" />
+		<link rel="stylesheet" href="resources/css/style.css">
+		<link rel="stylesheet" href="resources/css/jquery-ui.css"/>
+		<link rel="stylesheet" href="resources/css/jquery-ui.theme.css"/>
+		<link rel="stylesheet" href="resources/css/jquery.datetimepicker.min.css"/>
+		<link rel="stylesheet" href="resources/css/recurrence-schedule.css">
+		<link rel="icon" href="resources/images/icons/abps.png" type="image/png">
+		<!--<link rel="stylesheet" href="resources/css/user-form.css" type="text/css"/>-->
+		
+	</head>
+<body>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+				<h2 class="text-center text-info">Recurence Schedule</h2><hr/>
+			<div class="col-md-2">
+				<label>Select Display:</label>
+				<select id="display" class="form-control" required>
+				<option value="">---Select---</option>
+				
+				</select>
+				<!-- <label>Select Zones:</label>
+				<select id="zone" class="form-control">
+				<option value="">---Select---</option>
+				
+				</select> -->
+				<hr>
+			</div>
+			<div class="col-md-10">
+				<div style="color:blue;" id="types">
+				<input type="radio" name="schedule" value="Minutes" required> <span>Minutes</span>
+				<input type="radio" name="schedule" value="Hourly"> <span>Hourly</span>
+				<input type="radio" name="schedule" value="Daily"> <span>Daily</span>
+				<input type="radio" name="schedule" value="Weekly"> <span>Weekly</span>
+				<input type="radio" name="schedule" value="Monthly"> <span>Monthly</span>
+				<input type="radio" name="schedule" value="Yearly"> <span>Yearly</span>
+				</div>
+				<hr>
+			</div>
+		</div>
+	</div>
+  
+
+    
+			<div class="row">
+				<div class="col-sm-2">
+					<fieldset id="minutes-dialog" title="On Minutes Recurence Schedule" style="display:none;">
+						
+							<form class="fonrm-inline">
+								<table>				
+									<tr>
+										<td>Select Layouts :</td>
+											<td>
+												<select name="minutes-layouts" class="form-control" id="minutes-layouts">
+													<option value="default" disabled>---Select--- </option>
+												</select>
+											</td>
+									</tr>
+									<tr>
+										<td>Schedule Name :</td>
+											<td><input type="text" id="minutes-schedule" class="form-control" placeholder="Enter Schedule"></td>
+									</tr>
+									<tr>
+											<td>Start Date/Time :</td>
+												<td><input type="text" class="form-control" placeholder="01/02/2019" id="misdt"></td>
+									</tr>
+									<tr>
+										<td>End Date/Time :</td>
+										<td><input type="text" class="form-control" id="miedt" placeholder="31/02/2019"></td>
+									</tr>
+									<!--
+										<tr>
+											<td></td>
+											<td><input type="submit" value="Set Schedule" class="form-control btn btn-primary"></td>
+										</tr>
+									-->
+									<tr>
+										<td>Every :</td>
+										<td><input type="text" class="form-control" id="eminutes" placeholder="Enter Minutes"></td>
+										<td>minute(s)</td>
+									</tr>
+								</table>
+							</form>
+						</fieldset>
+				</div>
+				<div class="col-md-10">
+					<fieldset id="minute-edit-table" class="Minutes box">
+						<button type="button" class="btn btn-primary" id="minutes">Add Schedule</button>
+						<legend class="text-center text-info">Minutes Schedule Information</legend>
+						<table  class="table table-bordered" id="minutes-edit-table">
+							<thead>
+								<tr>
+									<th>Layout Name</th>
+									<th>Schedule Name</th>
+									<th>Start Date/Time</th>
+									<th>End Date/Time</th>
+									<th>Minute(s)</th>
+									<th>Actions</th>
+								<tr>
+							</thead>
+							<tbody>
+							
+							</tbody>
+						</table>
+					</fieldset>
+				</div>
+			
+		</div>
+  
+<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-2">
+					<fieldset id="hourly-dialog" title="Hourly Recurence Schedule" style="display:none;">
+						
+							<form class="fonrm-inline">
+								<table id="hourly-table">				
+									<tr>
+										<td>Select Layouts :</td>
+											<td>
+												<select name="hourly-layouts" class="form-control" id="hourly-layouts">
+													<option value="default" disabled>---Select--- </option>
+												</select>
+											</td>
+									</tr>
+									<tr>
+										<td>Schedule Name :</td>
+											<td><input type="text" id="hourly-schedule" class="form-control" placeholder="Enter Schedule" ></td>
+									</tr>
+									<tr>
+											<td>Start Date/Time :</td>
+												<td><input type="text" class="form-control" placeholder="01/02/2019" id="hsdt"></td>
+									</tr>
+									<tr>
+										<td>End Date/Time :</td>
+										<td><input type="text" class="form-control" id="hedt" placeholder="31/02/2019"></td>
+									</tr>
+									<!--
+										<tr>
+											<td></td>
+											<td><input type="submit" value="Set Schedule" class="form-control btn btn-primary"></td>
+										</tr>
+									-->
+									<tr>
+										<td><input type="radio" name="hourcontrol" id="ehourly" value="every hourly"> <span>Every</span></td>
+										<td><input type="text" class="form-control" id="evhourly" placeholder="Enter hours"></td>
+										<td>hour(s)</td>
+									</tr>
+									<tr>
+										<td><input type="radio" name="hourcontrol" id="startat" value="every hourly"> <span>Starts at</span></td>
+										<td>
+											<select id="hours" class="form-control">
+												<option value="00">00</option>
+												<option value="01">01</option>
+												<option value="02">02</option>
+												<option value="03">03</option>
+												<option value="04">04</option>
+												<option value="05">05</option>
+												<option value="06">06</option>
+												<option value="07">07</option>
+												<option value="08">08</option>
+												<option value="09">09</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
+												<option value="12">12</option>
+												<option value="13">13</option>
+												<option value="14">14</option>
+												<option value="15">15</option>
+												<option value="16">16</option>
+												<option value="17">17</option>
+												<option value="18">18</option>
+												<option value="19">19</option>
+												<option value="20">20</option>
+												<option value="21">21</option>
+												<option value="22">22</option>
+												<option value="23">23</option>
+											</select>
+										</td>
+										<td>
+											<select id="minute" class="form-control">
+												<option value="00">00</option>
+												<option value="01">01</option>
+												<option value="02">02</option>
+												<option value="03">03</option>
+												<option value="04">04</option>
+												<option value="05">05</option>
+												<option value="06">06</option>
+												<option value="07">07</option>
+												<option value="08">08</option>
+												<option value="09">09</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
+												<option value="12">12</option>
+												<option value="13">13</option>
+												<option value="14">14</option>
+												<option value="15">15</option>
+												<option value="16">16</option>
+												<option value="17">17</option>
+												<option value="18">18</option>
+												<option value="19">19</option>
+												<option value="20">20</option>
+												<option value="21">21</option>
+												<option value="22">22</option>
+												<option value="23">23</option>
+												<option value="24">24</option>
+												<option value="25">25</option>
+												<option value="26">26</option>
+												<option value="27">27</option>
+												<option value="28">28</option>
+												<option value="29">29</option>
+												<option value="30">30</option>
+												<option value="31">31</option>
+												<option value="32">32</option>
+												<option value="33">33</option>
+												<option value="34">34</option>
+												<option value="35">35</option>
+												<option value="36">36</option>
+												<option value="37">37</option>
+												<option value="38">38</option>
+												<option value="39">39</option>
+												<option value="40">40</option>
+												<option value="41">41</option>
+												<option value="42">42</option>
+												<option value="43">43</option>
+												<option value="44">44</option>
+												<option value="45">45</option>
+												<option value="46">46</option>
+												<option value="47">47</option>
+												<option value="48">48</option>
+												<option value="49">49</option>
+												<option value="50">50</option>
+												<option value="51">51</option>
+												<option value="52">52</option>
+												<option value="53">53</option>
+												<option value="54">54</option>
+												<option value="55">55</option>
+												<option value="56">56</option>
+												<option value="57">57</option>
+												<option value="58">58</option>
+												<option value="59">59</option>
+												
+											</select>
+										</td>
+										
+									</tr>
+								</table>
+							</form>
+				</fieldset>
+			</div>
+			<div class="col-sm-10">
+					<fieldset id="hour-edit-table" class="Hourly box">
+					<button type="button" class="btn btn-primary" id="hourly">Add Schedule</button>
+						<legend class="text-center text-info">Hours Schedule Information</legend>
+							<table class="table table-bordered" id="hours-edit-table">
+								<thead>
+									<tr>
+										<th>Layouts</th>
+										<th>Schedule Name</th>
+										<th>Start Date/Time</th>
+										<th>End Date/Time</th>
+										<th>Description</th>
+										<th>Actions</th>
+										</tr>
+									</thead>
+								<tbody>
+								</tbody>		
+						</table>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-2">
+					<fieldset id="daily-dialog" title="Daily Recurence Schedule" style="display:none;">
+						
+							<form class="fonrm-inline">
+								<table id="daily-table">				
+									<tr>
+										<td>Select Layouts :</td>
+											<td>
+												<select name="daily-layouts" class="form-control" id="daily-layouts">
+													<option value="default" disabled>---Select--- </option>
+												</select>
+											</td>
+									</tr>
+									<tr>
+											<td>Schedule Name :</td>
+												<td><input type="text" class="form-control" placeholder="Enter Schedule" id="daily-schedule"></td>
+												
+									</tr>
+									<tr>
+											<td>Start Date/Time :</td>
+												<td><input type="text" class="form-control" placeholder="01/01/2019" id="dsdt"></td>
+												
+									</tr>
+									<tr>
+											<td>End Date/Time :</td>
+												<td><input type="text" class="form-control" placeholder="01/01/2019" id="dedt"></td>
+												
+									</tr>
+									<tr>
+										<td><input type="radio" name="dailycontrol" id="edaily" value="every daily"> <span>Every</span></td>
+										<td><input type="text" class="form-control" id="ddays" placeholder="Enter days"></td>
+										<td>day(s)</td>
+									</tr>
+									<tr>
+										<td><input type="radio" name="dailycontrol" id="evwday" value="every dailys"></td>
+										<td>Every Week Day</td>
+									</tr>
+									<tr>
+										<td><span>Starts at</span></td>
+										<td>
+											<select id="dhours" class="form-control">
+												<option value="" disabled></option>
+												<option value="00">00</option>
+												<option value="01">01</option>
+												<option value="02">02</option>
+												<option value="03">03</option>
+												<option value="04">04</option>
+												<option value="05">05</option>
+												<option value="06">06</option>
+												<option value="07">07</option>
+												<option value="08">08</option>
+												<option value="09">09</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
+												<option value="12">12</option>
+												<option value="13">13</option>
+												<option value="14">14</option>
+												<option value="15">15</option>
+												<option value="16">16</option>
+												<option value="17">17</option>
+												<option value="18">18</option>
+												<option value="19">19</option>
+												<option value="20">20</option>
+												<option value="21">21</option>
+												<option value="22">22</option>
+												<option value="23">23</option>
+											</select>
+										</td>
+										<td>
+											<select id="dminutes" class="form-control">
+												<option value=""></option>
+												<option value="00">00</option>
+												<option value="01">01</option>
+												<option value="02">02</option>
+												<option value="03">03</option>
+												<option value="04">04</option>
+												<option value="05">05</option>
+												<option value="06">06</option>
+												<option value="07">07</option>
+												<option value="08">08</option>
+												<option value="09">09</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
+												<option value="12">12</option>
+												<option value="13">13</option>
+												<option value="14">14</option>
+												<option value="15">15</option>
+												<option value="16">16</option>
+												<option value="17">17</option>
+												<option value="18">18</option>
+												<option value="19">19</option>
+												<option value="20">20</option>
+												<option value="21">21</option>
+												<option value="22">22</option>
+												<option value="23">23</option>
+												<option value="24">24</option>
+												<option value="25">25</option>
+												<option value="26">26</option>
+												<option value="27">27</option>
+												<option value="28">28</option>
+												<option value="29">29</option>
+												<option value="30">30</option>
+												<option value="31">31</option>
+												<option value="32">32</option>
+												<option value="33">33</option>
+												<option value="34">34</option>
+												<option value="35">35</option>
+												<option value="36">36</option>
+												<option value="37">37</option>
+												<option value="38">38</option>
+												<option value="39">39</option>
+												<option value="40">40</option>
+												<option value="41">41</option>
+												<option value="42">42</option>
+												<option value="43">43</option>
+												<option value="44">44</option>
+												<option value="45">45</option>
+												<option value="46">46</option>
+												<option value="47">47</option>
+												<option value="48">48</option>
+												<option value="49">49</option>
+												<option value="50">50</option>
+												<option value="51">51</option>
+												<option value="52">52</option>
+												<option value="53">53</option>
+												<option value="54">54</option>
+												<option value="55">55</option>
+												<option value="56">56</option>
+												<option value="57">57</option>
+												<option value="58">58</option>
+												<option value="59">59</option>
+												
+											</select>
+										</td>
+										
+										
+									</tr>
+									<!--
+										<tr>
+											<td></td>
+											<td><input type="submit" value="Set Schedule" class="form-control btn btn-primary"></td>
+										</tr>
+									-->
+								</table>
+							</form>
+					</fieldset>
+				</div>
+			<div class="col-sm-10" style="">
+					<fieldset style="" id="daily-edit-table" class="Daily box">
+					<button type="button" class="btn btn-primary" id="daily">Add Schedule</button>
+						<legend class="text-center text-info">Daily Schedule Information</legend>
+							<table class="table table-bordered" id="dailys-edit-table">
+								<thead>
+									<tr>
+										<th>Layout Name</th>
+										<th>Schedule Name</th>
+										<th>Start Date/Time</th>
+										<th>End Date/Time</th>
+										<th>Description</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+								
+								</tbody>		
+							</table>
+						
+					</fieldset>
+			</div>
+		</div>
+</div>
+  
+<div class="container-fluid">
+		<div class="row">
+				<div class="col-sm-2">
+					<fieldset id="weekly-dialog" title="Weekly Recurence Schedule" style="display:none;">
+						
+							<form class="fonrm-inline">
+								<table id="weekly-table">				
+									<tr>
+										<td>Select Layouts :</td>
+											<td>
+												<select name="weekly-layouts" class="form-control" id="weekly-layouts">
+													<option value="default" disabled>---Select--- </option>
+												</select>
+											</td>
+									</tr>
+									<tr>
+											<td>Schedule Name :</td>
+												<td><input type="text" class="form-control" placeholder="Enter Schedule" id="weekly-schedule"></td>
+												
+									</tr>
+									<tr>
+											<td>Start Date/Time :</td>
+												<td><input type="text" class="form-control" placeholder="01/01/2019" id="wsdt"></td>
+									
+									</tr>
+									<tr>
+										<td>End Date/Time :</td>		
+											<td><input type="text" class="form-control" id="wedt" placeholder="31/01/2019"></td>
+									</tr>
+									<tr>
+										<td>Weeks On :</td>
+										<td><input type="checkbox" id="Sunday" value="Sunday">
+											<span>Sunday</span>
+										</td>
+										<td><input type="checkbox"  id="Monday" value="Monday">
+											<span>Monday</span>
+										</td>
+									</tr>
+									<tr>
+										<td></td>
+											<td><input type="checkbox" id="Tuesday" value="Tuesday">
+												<span>Tuesday</span>
+											</td>
+											<td><input type="checkbox" id="Wednesday" value="Wednesday">
+											<span>Wednesday</span>
+										</td>
+									</tr>
+									<tr>
+										<td></td>
+										
+										<td><input type="checkbox" id="Thursday" name="Thursday" value="Thursday">
+											<span>Thursday</span>
+										</td>
+										<td><input type="checkbox" id="Friday" value="Friday">
+											<span>Friday</span>
+										</td>
+										
+									</tr>
+									<tr>
+										<td></td>
+										<td><input type="checkbox" id="Saturday" value="Saturday">
+											<span>Saturday</span>
+										</td>
+										
+										
+									</tr>
+									<tr>
+										<td><span>Starts at</span></td>
+										<td>
+											<select id="whours" class="form-control">
+												<option value="" disabled></option>
+												<option value="00" >00</option>
+												<option value="01">01</option>
+												<option value="02">02</option>
+												<option value="03">03</option>
+												<option value="04">04</option>
+												<option value="05">05</option>
+												<option value="06">06</option>
+												<option value="07">07</option>
+												<option value="08">08</option>
+												<option value="09">09</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
+												<option value="12">12</option>
+												<option value="13">13</option>
+												<option value="14">14</option>
+												<option value="15">15</option>
+												<option value="16">16</option>
+												<option value="17">17</option>
+												<option value="18">18</option>
+												<option value="19">19</option>
+												<option value="20">20</option>
+												<option value="21">21</option>
+												<option value="22">22</option>
+												<option value="23">23</option>
+											</select>
+										</td>
+										<td>
+											<select id="wminutes" class="form-control">
+												<option value="" disabled></option>
+												<option value="00" >00</option>
+												<option value="01">01</option>
+												<option value="02">02</option>
+												<option value="03">03</option>
+												<option value="04">04</option>
+												<option value="05">05</option>
+												<option value="06">06</option>
+												<option value="07">07</option>
+												<option value="08">08</option>
+												<option value="09">09</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
+												<option value="12">12</option>
+												<option value="13">13</option>
+												<option value="14">14</option>
+												<option value="15">15</option>
+												<option value="16">16</option>
+												<option value="17">17</option>
+												<option value="18">18</option>
+												<option value="19">19</option>
+												<option value="20">20</option>
+												<option value="21">21</option>
+												<option value="22">22</option>
+												<option value="23">23</option>
+												<option value="24">24</option>
+												<option value="25">25</option>
+												<option value="26">26</option>
+												<option value="27">27</option>
+												<option value="28">28</option>
+												<option value="29">29</option>
+												<option value="30">30</option>
+												<option value="31">31</option>
+												<option value="32">32</option>
+												<option value="33">33</option>
+												<option value="34">34</option>
+												<option value="35">35</option>
+												<option value="36">36</option>
+												<option value="37">37</option>
+												<option value="38">38</option>
+												<option value="39">39</option>
+												<option value="40">40</option>
+												<option value="41">41</option>
+												<option value="42">42</option>
+												<option value="43">43</option>
+												<option value="44">44</option>
+												<option value="45">45</option>
+												<option value="46">46</option>
+												<option value="47">47</option>
+												<option value="48">48</option>
+												<option value="49">49</option>
+												<option value="50">50</option>
+												<option value="51">51</option>
+												<option value="52">52</option>
+												<option value="53">53</option>
+												<option value="54">54</option>
+												<option value="55">55</option>
+												<option value="56">56</option>
+												<option value="57">57</option>
+												<option value="58">58</option>
+												<option value="59">59</option>
+												
+											</select>
+										</td>
+										
+										
+									</tr>
+									<!--
+										<tr>
+											<td></td>
+											<td><input type="submit" value="Set Schedule" class="form-control btn btn-primary"></td>
+										</tr>
+									-->
+								</table>
+							</form>
+					</fieldset>
+				</div>
+			<div class="col-sm-10">
+					<fieldset style="" id="weekly-edit-table" class="Weekly box">
+						<button type="button" class="btn btn-primary" id="weekly">Add Schedule</button>
+						<legend class="text-center text-info">Weekly Schedule Information</legend>
+							
+							<table class="table table-bordered" id="weeks-edit-table">
+								<thead>
+									<tr>
+										<th>Layout Name</th>
+										<th>Schedule Name</th>
+										<th>Start Date/Time</th>
+										<th>End Date/Time</th>
+										<th>Weekly Days</th>
+										<th>Description</th>
+										<th>Actions</th>
+										
+									</tr>
+								</thead>
+								<tbody>
+								
+								</tbody>		
+							</table>
+						
+					</fieldset>
+			</div>
+		</div>
+</div>
+
+<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-2">
+					<fieldset id="monthly-dialog" title="Monthly Recurence Schedule" style="display:none;">
+						
+							<form class="fonrm-inline">
+								<table id="monthly-table">				
+									<tr>
+										<td>Select Layouts :</td>
+											<td>
+												<select name="monthly-layouts" class="form-control" id="monthly-layouts">
+													<option value="default" disabled>---Select--- </option>
+												</select>
+											</td>
+									</tr>
+									<tr>
+										<td>Schedule Name :</td>		
+											<td><input type="text" class="form-control" id="monthly-schedule" placeholder="Enter Schedule"></td>
+									</tr>
+									<tr>
+											<td>Start Date/Time :</td>
+												<td><input type="text" class="form-control" placeholder="01/01/2019" id="mtsdt"></td>
+										
+									</tr>
+									<tr>
+										<td>End Date/Time :</td>		
+											<td><input type="text" class="form-control" placeholder="31/01/2019" id="mtedt"></td>
+									</tr>
+									<tr>
+										<td><input type="radio" name="monthcontrol" id="monthlynum"> <span>Day:</span></td>
+										<td><input type="text" class="form-control" placeholder="1"  id="mtdaysinput"></td>
+										<td>of every</td>
+										<td><input type="text" id="mtmonth" placeholder="1" class="form-control"></td>
+										<td>month(s)</td>
+									</tr>
+									<tr>
+										<td><input type="radio" name="monthcontrol" id="mtthe"> <span>The:</span></td>
+										<td><select name="mtdayson" class="form-control" id="mtdayson">
+												<option value=" " disabled>---Select---</option>
+												<option value="First">First</option>
+												<option value="Second">Second</option>
+												<option value="Tihrd">Third</option>
+												<option value="Fourth">Fourth</option>
+												<option value="Fifth">Fifth</option>
+												<option value="Sixth">Sixth</option>
+												<option value="Seventh">Seventh</option>
+											</select>
+										</td>
+										<td><select name="mtdaysname" class="form-control" id="mtdaysname">
+												<option value=" " disabled>---Select---</option>
+												<option value="Sunday">Sunday</option>
+												<option value="Monday">Monday</option>
+												<option value="Tuesday">Tuesday</option>
+												<option value="Wednesday">Wednesday</option>
+												<option value="Thursday">Thursday</option>
+												<option value="Friday">Friday</option>
+												<option value="Saturday">Saturday</option>
+											</select>
+										</td><td>of every</td>
+										<td><input type="text" id="mtofmonth" placeholder="1" class="form-control"></td>
+										<td>month(s)</td>
+									</tr>
+									<!--
+										<tr>
+											<td></td>
+											<td><input type="submit" value="Set Schedule" class="form-control btn btn-primary"></td>
+										</tr>
+									-->
+									<tr>
+										<td><span>Starts at</span></td>
+										<td>
+											<select id="mthours" class="form-control">
+												<option value="" disabled></option>
+												<option value="00" >00</option>
+												<option value="01">01</option>
+												<option value="02">02</option>
+												<option value="03">03</option>
+												<option value="04">04</option>
+												<option value="05">05</option>
+												<option value="06">06</option>
+												<option value="07">07</option>
+												<option value="08">08</option>
+												<option value="09">09</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
+												<option value="12">12</option>
+												<option value="13">13</option>
+												<option value="14">14</option>
+												<option value="15">15</option>
+												<option value="16">16</option>
+												<option value="17">17</option>
+												<option value="18">18</option>
+												<option value="19">19</option>
+												<option value="20">20</option>
+												<option value="21">21</option>
+												<option value="22">22</option>
+												<option value="23">23</option>
+											</select>
+										</td>
+										<td>
+											<select id="mtminute" class="form-control">
+												<option value="" disabled></option>
+												<option value="00" >00</option>
+												<option value="01">01</option>
+												<option value="02">02</option>
+												<option value="03">03</option>
+												<option value="04">04</option>
+												<option value="05">05</option>
+												<option value="06">06</option>
+												<option value="07">07</option>
+												<option value="08">08</option>
+												<option value="09">09</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
+												<option value="12">12</option>
+												<option value="13">13</option>
+												<option value="14">14</option>
+												<option value="15">15</option>
+												<option value="16">16</option>
+												<option value="17">17</option>
+												<option value="18">18</option>
+												<option value="19">19</option>
+												<option value="20">20</option>
+												<option value="21">21</option>
+												<option value="22">22</option>
+												<option value="23">23</option>
+												<option value="24">24</option>
+												<option value="25">25</option>
+												<option value="26">26</option>
+												<option value="27">27</option>
+												<option value="28">28</option>
+												<option value="29">29</option>
+												<option value="30">30</option>
+												<option value="31">31</option>
+												<option value="32">32</option>
+												<option value="33">33</option>
+												<option value="34">34</option>
+												<option value="35">35</option>
+												<option value="36">36</option>
+												<option value="37">37</option>
+												<option value="38">38</option>
+												<option value="39">39</option>
+												<option value="40">40</option>
+												<option value="41">41</option>
+												<option value="42">42</option>
+												<option value="43">43</option>
+												<option value="44">44</option>
+												<option value="45">45</option>
+												<option value="46">46</option>
+												<option value="47">47</option>
+												<option value="48">48</option>
+												<option value="49">49</option>
+												<option value="50">50</option>
+												<option value="51">51</option>
+												<option value="52">52</option>
+												<option value="53">53</option>
+												<option value="54">54</option>
+												<option value="55">55</option>
+												<option value="56">56</option>
+												<option value="57">57</option>
+												<option value="58">58</option>
+												<option value="59">59</option>
+												
+											</select>
+										</td>
+										
+										
+									</tr>
+								</table>
+							</form>
+					</fieldset>
+				</div>
+			<div class="col-sm-10">
+					<fieldset style="" id="monthly-edit-table" class="Monthly box">
+					<button type="button" class="btn btn-primary" id="monthly">Add Schedule</button>
+						<legend class="text-center text-info">Monthly Schedule Information</legend>
+							<table class="table table-bordered" id="months-edit-table">
+								<thead>
+									<tr>
+										<th>Layout Name</th>
+										<th>Schedule Name</th>
+										<th>Start Date/Time</th>
+										<th>End Date/Time</th>
+										<th>Description</th>
+										<th>Actions</th>
+										
+										
+									</tr>
+								</thead>
+								<tbody>
+								
+								</tbody>		
+							</table>
+						
+					</fieldset>
+			</div>
+		</div>
+</div>
+<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-2">
+					<fieldset id="yearly-dialog" title="Yearly Recurence Schedule" style="display:none;">
+						
+							<form class="fonrm-inline">
+								<table id="yearly-table">				
+									<tr>
+										<td>Select Layouts :</td>
+											<td>
+												<select name="yearly-layouts" class="form-control" id="yearly-layouts">
+													<option value="default" disabled>---Select--- </option>
+												</select>
+											</td>
+									</tr>
+									<tr>
+										<td>Schedule Name :</td>		
+											<td><input type="text" class="form-control" id="yearly-schedule" placeholder="Enter Schedule"></td>
+									</tr>
+									<tr>
+											<td>Start Date/Time :</td>
+												<td><input type="text" class="form-control" placeholder="01/01/2019" id="ysdt"></td>
+										
+									</tr>
+									<tr>
+										<td>End Date/Time :</td>		
+											<td><input type="text" class="form-control" placeholder="31/01/2019" id="yedt"></td>
+									</tr>
+									<tr>
+										<td><input type="radio" name="yearcontrol" id="eyear"> <span>Every</span></td>
+										<td>
+											<select name="yearly-month" class="form-control" id="yearly-month">
+												<option value=" " disabled>---Select---</option>
+												<option value="january">January</option>
+												<option value="february">February</option>
+												<option value="march">March</option>
+												<option value="april">April</option>
+												<option value="may">May</option>
+												<option value="june">June</option>
+												<option value="july">July</option>
+												<option value="auquest">Auquest</option>
+												<option value="september">September</option>
+												<option value="october">October</option>
+												<option value="november">November</option>
+												<option value="december">December</option>
+											</select>
+										</td>
+										<td><input type="text" name="yearly-days" class="form-control" placeholder="1" id="yearly-days"></td>
+									</tr>
+				
+									<tr>
+										<td><input type="radio" name="yearcontrol" required="required" id="eday"> <span>The:</span></td>
+										<td><select name="yearly-dayson" class="form-control" id="yearly-dayson">
+												<option value=" ">---Select---</option>
+												<option value="First">First</option>
+												<option value="Second">Second</option>
+												<option value="Third">Third</option>
+												<option value="Fourth">Fourth</option>
+												
+											</select>
+										</td>
+										<td><select name="yearly-daysname" class="form-control" id="yearly-daysname">
+												<option value=" " disabled>---Select---</option>
+												<option value="sunday">Sunday</option>
+												<option value="monday">Monday</option>
+												<option value="tuesday">Tuesday</option>
+												<option value="wednesday">Wednesday</option>
+												<option value="thursday">Thursday</option>
+												<option value="friday">Friday</option>
+												<option value="saturday">Saturday</option>
+											</select>
+										</td>
+										<td>of</td>
+										<td><select name="yearly-ofmonth" class="form-control" id="yearly-ofmonth">
+												<option value=" " disabled>---Select---</option>
+												<option value="january">January</option>
+												<option value="february">February</option>
+												<option value="march">March</option>
+												<option value="april">April</option>
+												<option value="may">May</option>
+												<option value="june">June</option>
+												<option value="july">July</option>
+												<option value="auquest">Auquest</option>
+												<option value="september">September</option>
+												<option value="october">October</option>
+												<option value="november">November</option>
+												<option value="december">December</option>
+											</select>
+										</td>
+									</tr>
+									<!--
+										<tr>
+											<td></td>
+											<td><input type="submit" value="Set Schedule" class="form-control btn btn-primary"></td>
+										</tr>
+									-->
+									<tr>
+										<td>Start time:</td>
+										<td>
+											<select id="yhours" class="form-control">
+												<option value="" disabled></option>
+												<option value="00" >00</option>
+												<option value="01">01</option>
+												<option value="02">02</option>
+												<option value="03">03</option>
+												<option value="04">04</option>
+												<option value="05">05</option>
+												<option value="06">06</option>
+												<option value="07">07</option>
+												<option value="08">08</option>
+												<option value="09">09</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
+												<option value="12">12</option>
+												<option value="13">13</option>
+												<option value="14">14</option>
+												<option value="15">15</option>
+												<option value="16">16</option>
+												<option value="17">17</option>
+												<option value="18">18</option>
+												<option value="19">19</option>
+												<option value="20">20</option>
+												<option value="21">21</option>
+												<option value="22">22</option>
+												<option value="23">23</option>
+											</select>
+										</td>
+										<td>
+											<select id="yminute" class="form-control">
+												<option value="" disabled></option>
+												<option value="00">00</option>
+												<option value="01">01</option>
+												<option value="02">02</option>
+												<option value="03">03</option>
+												<option value="04">04</option>
+												<option value="05">05</option>
+												<option value="06">06</option>
+												<option value="07">07</option>
+												<option value="08">08</option>
+												<option value="09">09</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
+												<option value="12">12</option>
+												<option value="13">13</option>
+												<option value="14">14</option>
+												<option value="15">15</option>
+												<option value="16">16</option>
+												<option value="17">17</option>
+												<option value="18">18</option>
+												<option value="19">19</option>
+												<option value="20">20</option>
+												<option value="21">21</option>
+												<option value="22">22</option>
+												<option value="23">23</option>
+												<option value="24">24</option>
+												<option value="25">25</option>
+												<option value="26">26</option>
+												<option value="27">27</option>
+												<option value="28">28</option>
+												<option value="29">29</option>
+												<option value="30">30</option>
+												<option value="31">31</option>
+												<option value="32">32</option>
+												<option value="33">33</option>
+												<option value="34">34</option>
+												<option value="35">35</option>
+												<option value="36">36</option>
+												<option value="37">37</option>
+												<option value="38">38</option>
+												<option value="39">39</option>
+												<option value="40">40</option>
+												<option value="41">41</option>
+												<option value="42">42</option>
+												<option value="43">43</option>
+												<option value="44">44</option>
+												<option value="45">45</option>
+												<option value="46">46</option>
+												<option value="47">47</option>
+												<option value="48">48</option>
+												<option value="49">49</option>
+												<option value="50">50</option>
+												<option value="51">51</option>
+												<option value="52">52</option>
+												<option value="53">53</option>
+												<option value="54">54</option>
+												<option value="55">55</option>
+												<option value="56">56</option>
+												<option value="57">57</option>
+												<option value="58">58</option>
+												<option value="59">59</option>
+												
+											</select>
+										</td>
+										
+									</tr>
+								</table>
+							</form>
+					</fieldset>
+				</div>
+			<div class="col-sm-10">
+					<fieldset style="" id="yearly-edit-table" class="Yearly box">
+					<button type="button" class="btn btn-primary" id="yearly">Add Schedule</button>
+						<legend class="text-center text-info">Yearly Schedule Information</legend>
+							<table class="table table-bordered" id="years-edit-table">
+								<thead>
+									<tr>
+										<th>Layout Name</th>
+										<th>Schedule Name</th>
+										<th>Start Date/Time</th>
+										<th>End Date/Time</th>
+										<th>Description</th>
+										<th>Actions</th>
+										
+										
+									</tr>
+								</thead>
+								<tbody>
+								
+								</tbody>		
+							</table>
+					</fieldset>
+			</div>
+		</div>
+</div>
+</div>
+	
+
+<div id="fileModel" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+	
+		<div class="model-content bg-default">
+			<div class="model-header text-white bg-info">
+				<button type="button" class="close" data-dismiss="modal"><img src="resources/images/delete-icon.png"></button>
+				<h3 class="modal-title">Upload File</h3>
+			</div>
+			<div class="modal-body">
+				<form id="fileuploadForm" method="post"  enctype="multipart/form-data">
+				<label>Select Your File:<input type="file" name="file" id="fileload" class="form-control" /></label>
+				
+				<input type="submit" name="file-btn" id="btnFile" class="btn btn-primary" value="Upload"/>
+				</form>
+			</div>
+			<br><br>
+			<div class="modal-footer">
+				
+			</div>
+		</div>
+	</div>
+
+</div>
+<script src="resources/js/user-role.js"></script>
+<script src="resources/js/file-upload.js"></script>
+<script src="resources/js/jquery-ui.js"></script>
+<script src="resources/js/recurence-schedule.js"></script>
+
+
+</body>
+
+</html>

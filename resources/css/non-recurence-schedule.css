@@ -1,0 +1,18 @@
+body{
+margin:0 auto;
+padding:0 auto;
+overflow-y:scroll;
+}
+
+input[type='text'],[type='date']
+{
+	margin:6px;
+}
+input[type='time']
+{
+	margin-left:10px;
+}
+input[type='button']
+{
+	margin:6px;
+}

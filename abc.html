@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title></title>
+<link rel="stylesheet" href="https://localhost:8469/resources/css/bootstrapv4.3.1.min.css">
+<link rel="stylesheet" href="https://localhost:8469/resources/css/FeedEk.css">
+<script src="https://localhost:8469/resources/js/bootstrap4.3.1.min.js"></script>
+</head>
+<body>
+<div id="divRss"></div>
+<script src="https://localhost:8469/resources/js/jquery-3.3.1.min.js"></script>
+<script src="https://localhost:8469/resources/js/FeedEk.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+	function loadFeed(){
+       		$('#divRss').FeedEk({
+				FeedUrl : 'https://lorem-rss.herokuapp.com/feed?unit=second&interval=30',MaxCount : 5,ShowDesc :  true,ShowPubDate :  true
+			});
+	}
+	loadFeed();
+    setInterval(loadFeed, 300 * 1000);		
+    });
+</script>
+</body>
+</html>                                                        

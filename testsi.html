@@ -1,0 +1,35 @@
+<html><head>
+<title></title>
+<script src="https://localhost:8469/resources/js/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" href="https://localhost:8469/resources/css/bootstrapv4.3.1.min.css">
+<link href="https://localhost:8469/resources/css/mdb.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://localhost:8469/resources/css/font-awesome.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+    	 //$('.video').load('https://localhost:8469/app/digitalsignage/deskbar/video/html');
+    	 //$('#abpscarousel').carousel();
+    	$.ajax({
+    		  url: 'https://localhost:8469/app/digitalsignage/deskbar/video/html'
+    		})
+    		  .done(function( data ) {
+    			  $('.video').html(data);
+    			  console.log(data);
+    			  $('#abpscarousel').carousel();
+    		  }); 
+    	
+    	
+    });
+</script>	
+</head>
+<body>
+	<div class="video" style="border:1px red solid;position:absolute;left:0px;top:0px;width:1920px;height:540px">
+
+
+                                                        </div>
+
+
+
+</body></html>

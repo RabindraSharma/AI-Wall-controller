@@ -1,0 +1,21 @@
+body{
+	padding: 0 auto;
+	margin: 0 auto;
+	overflow-y:scroll;
+}
+
+input[type="radio"]{
+	margin-left:10px;
+	font-family:sens serif;
+	font-size:30px;
+	color:blue;
+	
+}
+.row .schedules{
+	background:lightblue;
+	color:blue;
+}
+table tr td {
+	padding:5px;
+}
+l

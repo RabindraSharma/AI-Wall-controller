@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<head>
+    <meta name="description" content="">
+    <title>Intrusion Source</title>
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="resources/css/bootstrap.css" />
+    <link rel="icon" href="resources/images/icons/abps.ico" type="image/png">
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="resources/css/style.css">
+    <link rel="stylesheet" href="resources/css/sidebar.css">
+    <!-- endbuild -->
+    <link rel="stylesheet" href="resources/css/bootstrap.css"/>
+    <link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="resources/css/jquery-ui.css"/>
+    <link rel="stylesheet" href="resources/css/jquery-ui.min.css"/>
+    <script src="resources/js/validation.js"></script>
+    
+    <style>
+        #divbox{
+            width:100%;
+            height:auto;
+            overflow-x:scroll;
+        }
+
+        #block{
+            height:100%;
+            width:300px;
+            border:1px solid green;
+            background-color:whitesmoke;
+            color:blue;
+            text-align:justify;
+        }
+    </style>
+
+</head>
+<body id="bodycontainer"  ng-app="webappApp" ng-controller="CurrencyController" ng-init="loadDisplays()">
+    <!-- Add your site or application content here -->
+    <div id="loading"></div>
+    <header class="bg-dark text-white pl-4 pr-4 ">
+      <div ng-include="'include/sidebar.html'"></div>
+    </header>
+<div class="row"><button class="btn btn-primary btn-lg btn-block" id="addNewIntrusionSource"><img src="resources/images/addschedule.png"/>Add New Intrusion Source</button>
+</div>
+    <div id="intrusion-source-dialog" title="Intrusion Source Dialog"  style="display:none;">
+    <div class="row">
+        <div class="col-sm-8">
+            <fieldset>
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="name" class="form-control" required>
+                <span id="nerror"></span>
+            </fieldset>
+            <fieldset>
+                <label for="urls">URL:</label> <input type="url" name="url" id="urls" class="form-control" required>
+                <span id="urlerror"></span>
+            </fieldset>
+            <fieldset>
+                <label>Select Speed:</label>
+                <select id="speeds" name="speed" class="form-control" required> 
+                    <option selected="selected" disabled>Select</option>
+                    <option value="0">Real Time But Low Accuracy</option>
+                    <option value="1">Almost Real Time & Medium Accuracy</option>
+                    <option value="2">Slowest But High Accuracy</option>
+                </select>
+                <span id="speederror"></span>
+            </fieldset>
+            <fieldset>
+                <label for="framepersecond">Frame Per Second:</label> <input type="number" name="framepersecond" id="framepersecond" class="form-control" required>
+                <span id="frameerror"></span>
+            </fieldset>
+            <fieldset>
+                <label>Play Sound</label>
+                <select id="playsound" name="playsound" class="form-control">
+                    <!--<option selected="selected" disabled>Select</option>-->
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+                <span id="sounderror"></span>
+            </fieldset>
+        </div>
+    </div><br>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div id="divbox">
+                <table border="0" id="display">
+                    <tbody>
+                    <tr>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div><br>
+</div>
+<!------------------------------------------------------------------------------------------------>
+<div id="edit-intrusion-source-dialog" title=" Edit Intrusion Source"  style="display:none;">
+    <div class="row">
+        <div class="col-sm-8">
+            <fieldset>
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="edit-name" class="form-control">
+            </fieldset>
+            <fieldset>
+                <label for="edit-url">URL:</label> <input type="url" name="url" id="edit-url" class="form-control">
+            </fieldset>
+            <fieldset>
+                <label>Select Speed:</label>
+                <select id="edit-speed" name="speed" class="form-control">
+                    <option selected="selected" disabled>Select</option>
+                    <option value="0">Real Time But Low Accuracy</option>
+                    <option value="1">Almost Real Time & Medium Accuracy</option>
+                    <option value="2">Slowest But High Accuracy</option>
+                </select>
+            </fieldset>
+            <fieldset>
+                <label for="framepersecond">Frame Per Second:</label> <input type="number" name="framepersecond" id="edit-framepersecond" class="form-control">
+            </fieldset>
+            <fieldset>
+                <label>Play Sound</label>
+                <select id="edit-playsound" name="edit-playsound" class="form-control">
+                    <!--<option selected="selected" disabled>Select</option>-->
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </fieldset>
+        </div>
+    </div><br>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div id="edit-divbox">
+                <table border="0" id="edit-display">
+                    <tbody>
+                    <tr>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div><br>
+</div>
+<!------------------------------------------------------------------------------------------------>
+<div class="row">
+    <div class="col-sm-12">
+        <fieldset>
+            <table class="table table-bordered " id="intrusion-source-table">
+                <thead class="thead-light">
+                <tr>
+                    <th>Intrusion Name</th>
+                    <th>URL</th>
+                    <th>Speed</th>
+                    <th>Frame Per Second</th>
+                    <th>Play Sound</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </fieldset>
+    </div>
+</div>
+<script src="resources/js/angular.min.js"></script>
+<script src="resources/js/angular-route.js"></script>
+<script src="resources/js/jquery-3.3.1.min.js"></script>
+<script src="resources/js/include.js"></script>
+<script src="resources/js/bootstrap.js"></script>
+<script src="resources/js/bootstrap.min.js"></script>
+<script src="resources/js/jquery-ui.js"></script>
+
+<script src="resources/js/intrusion-source.js"></script>
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="resources/scripts/app.js"></script>
+<script src="resources/scripts/controllers/main.js"></script>
+<script src="resources/scripts/controllers/CurrencyService.js"></script>
+<script src="resources/scripts/controllers/CurrencyController.js"></script>
+<script src="resources/js/sidebar.js" ></script>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+*{
+  margin: 0%;
+  padding: 0%;
+}
+body{
+  background-color: rgba(233, 233, 233, 0.933);
+}
+
+footer{
+  width: 100%;
+  bottom: 0%;
+  position: fixed;
+  z-index: -999;
+}
+.displaybox{
+  text-align: center;
+  text-shadow: rgba(233, 233, 233, 0.933);
+  box-sizing: 20px 0px 0px 20px #fff;
+  vertical-align: middle;
+  border-radius: 4px;
+  width: auto;
+  height: 4vh;
+}
+.bg-custom{
+  background-color: rgba(51, 73, 199, 0.933);
+}
+.dialog{
+  display: none;
+}
+.dsquare{
+  overflow-x: auto;
+  overflow-y: hidden;
+  z-index: 9999;
+}
+.text-size{
+  font-size: 10px;
+}
+
+.table td {
+  padding: 0.75rem;
+  vertical-align: middle;
+  flex-shrink: inherit;
+  
+}
+.table{
+  border-collapse: separate;
+  border: none;
+}
+.table-bordered td{
+  border: 1px solid #ded;
+  line-height: 4;
+}
+.table td >.displaybox{
+  background-color: rgba(51, 73, 199, 0.933);
+  text-align: center;
+  text-shadow: rgba(233, 233, 233, 0.933);
+  box-sizing: 20px 0px 0px 20px #fff;
+  width:auto;
+  border:#ded solid;
+  height:50px;
+  vertical-align: middle;
+  color: #fff;
+}
+table{
+  border-spacing: 6px;
+}
+.rectangle{
+  line-height:2;
+}
+.hide{
+  display: none;
+}
+
+.contextMenu{
+  display: none;
+}
+.contextMenu{
+  width: 100px;
+  height: auto;
+  background-color: #fff;
+  box-shadow: 1px 0px 0px 2px #dedede;
+  border-radius: 2px;
+}
+
+.contextMenu ul{
+  text-decoration: none;
+  list-style: none;
+  padding: 2px;
+}
+.contextMenu ul li:hover{
+  background-color: rgba(44, 52, 90, 0.178);
+  cursor: pointer;
+}
+.contextMenu ul span.divider{
+  border-top: 1px solid #ded;
+}

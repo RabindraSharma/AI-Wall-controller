@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+	<head>
+		<title>Non-Recurence-Schedule</title>
+		<!-- Added bootstrap css links-->
+		<link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css"/>
+		<script src="resources/js/jquery-3.3.1.min.js"></script>
+		<script src="resources/js/jquery.datetimepicker.full.js"></script>
+		<script src="resources/js/printdateformat.js"></script>
+		<script src="resources/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="resources/css/bootstrap.css" />
+		<link rel="stylesheet" href="resources/css/style.css">
+		<link rel="stylesheet" href="resources/css/jquery-ui.css"/>
+		<link rel="stylesheet" href="resources/css/jquery-ui.theme.css"/>
+		<link rel="stylesheet" href="resources/css/jquery.datetimepicker.min.css"/>
+		<link rel="stylesheet" href="resources/css/non-recurence-schedule.css">
+		<link rel="icon" href="resources/images/icons/abps.png" type="image/png">
+		<!--<link rel="stylesheet" href="resources/css/user-form.css" type="text/css"/>-->
+		
+	</head>
+<body>
+<div class="container-flude">
+	<div class="row">
+    <div class="col-lg-12">
+		<h1 class="text-center text-info">Non Recurence Schedule</h1><hr>
+    <div class="col-lg-4 left-section">
+	<div id="select">
+		<label>Select Display:</label>
+		<select id="display" class="form-control" required>
+				<option value="">---Select---</option>
+				
+		</select>
+	</div>
+	<div id="types">
+		<ul>
+			<li id="non-recurence-schedule"><button class="btn btn-primary">Create Schedule</button></li>
+		</ul>
+	</div>
+	
+		<fieldset style="display:none;" id="non-recurence-dialog" title="Non Recurence Schedule">
+			<form>
+				<table>
+					<tr>
+						<td>Schedule Name:</td>
+						<td><input type="text" name="schedule" id="schedule-name" placeholder="Enter Schedule" class="form-control"/></td>
+					</tr>
+					<tr>
+						<td>Start Date/Time:</td>
+						<td><input type="text" class="form-control" placeholder="01/01/2019" id="startDateTime"/>
+						<!--<td><input type="time" name="time" id="start-time" class="form-control"/></td>-->
+					</tr>
+					<tr>
+						<td>End Date/Time:</td>
+						<td><input type="text" class="form-control" placeholder="31/01/2019" id="endDateTime">
+					</tr>
+					<tr>
+						<td>View Time:</td>
+						<td><input type="text" name="viewtime" id="viewtime" value="60" class="form-control"/></td>
+					</tr>
+					<table id="sequencetable" class="table table-bordered" style="width: 100%">
+					<thead>
+					<tr>
+						<th>Sequence</th>
+						<th>Layout</th>
+						<th>ViewTime</th>
+						<th></th>
+					</tr>
+					</thead>
+					<tbody id="seqtable">
+					</tbody>
+					</table>
+				</table>
+			</form>
+		</fieldset><hr>
+    </div>
+    <div class="col-lg-8 right-section">
+        <table id="non-recurence-table" class="table table-bordered" >
+            <thead>
+            <tr>
+                <!--<th>Display</th>
+                <th>Zone</th>-->
+				
+				<th>Schedule</th>
+				<th>Start Date/Time</th>
+				<th>End Date/Time</th>
+				<th>Description</th>
+				<th>Actions</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>   
+</div>
+</div>
+</div>
+
+<fieldset style="display:none;" id="non-recurence-edit-dialog" title="Non Recurence Schedule">
+			<form>
+				<table>
+					<tr>
+						<td>Schedule Name:</td>
+						<td><input type="text" name="schedule" id="edit-schedulename" placeholder="Enter Schedule" class="form-control"/></td>
+					</tr>
+					<tr>
+						<td>Start Date/Time:</td>
+						<td><input type="text" class="form-control" placeholder="01/01/2019" id="editstartDateTime"/>
+						<!--<td><input type="time" name="time" id="start-time" class="form-control"/></td>-->
+					</tr>
+					<tr>
+						<td>End Date/Time:</td>
+						<td><input type="text" class="form-control" placeholder="31/01/2019" id="editendDateTime">
+					</tr>
+					
+					<!--<tr>
+						<td></td>
+						<td><input type="button" value="Add Schedule" id="addSchedule" class="form-control btn-primary"/></td>
+						
+					</tr>-->
+					<table id="editsequencetable" class="table table-bordered" style="width: 100%">
+					<thead>
+					<tr>
+						<th>Sequence</th>
+						<th>Layout</th>
+						<th>ViewTime</th>
+						<th></th>
+					</tr>
+					</thead>
+					<tbody id="editseqtable">
+					</tbody>
+					</table>
+				</table>
+			</form>
+		</fieldset><hr>
+  
+<div id="fileModel" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+	
+		<div class="model-content bg-default">
+			<div class="model-header text-white bg-info">
+				<button type="button" class="close" data-dismiss="modal"><img src="resources/images/delete-icon.png"></button>
+				<h3 class="modal-title">Upload File</h3>
+			</div>
+			<div class="modal-body">
+				<form id="fileuploadForm" method="post"  enctype="multipart/form-data">
+				<label>Select Your File:<input type="file" name="file" id="fileload" class="form-control" /></label>
+				
+				<input type="submit" name="file-btn" id="btnFile" class="btn btn-primary" value="Upload"/>
+				</form>
+			</div>
+			<br><br>
+			<div class="modal-footer">
+				
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<script src="resources/js/user-role.js"></script>
+<script src="resources/js/jquery-ui.js"></script>
+<script src="resources/js/file-upload.js"></script>
+<script src="resources/js/non-recurence-schedule.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+.sidenav-drawer {
+    height:50%;
+    width: 0;
+    position: absolute;
+    z-index: 1;
+    top: 17.6%;
+    left: 9.3%;
+    background-color: rgb(88, 88, 88);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top:20px;
+   
+  }
+  
+  .sidenav-drawer a {
+    padding: 0px 0px 0px 0px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenav-drawer a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidenav-drawer .closebtn {
+    position: absolute;
+    top: -6px;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  .contentPane{
+      overflow: auto;
+  }
+  
+  @media screen and (max-height: 250px) {
+    .sidenav-drawer {padding-top: 0px;}
+    .sidenav-drawer a {font-size: 18px;}
+  }

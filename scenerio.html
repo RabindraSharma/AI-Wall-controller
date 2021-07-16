@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<head>
+<meta name="description" content="">
+<title>Scenerio</title>
+<meta name="viewport" content="width=device-width">
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<!-- build:css(.) styles/vendor.css -->
+<!-- bower:css -->
+<link rel="stylesheet" href="resources/css/bootstrap.css" />
+<link rel="icon" href="resources/images/icons/abps.ico" type="image/png">
+<!-- endbower -->
+<!-- endbuild -->
+<!-- build:css(.tmp) styles/main.css -->
+<link rel="stylesheet" href="resources/css/style.css">
+<link rel="stylesheet" href="resources/css/sidebar.css">
+<!-- endbuild -->
+<link rel="stylesheet" href="resources/css/bootstrap.css"/>
+<link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="resources/css/jquery-ui.css"/>
+<link rel="stylesheet" href="resources/css/jquery-ui.min.css"/>
+
+<script src="resources/js/validation.js"></script>
+ <style>
+	#divbox{
+		width:100%;
+		height:auto;
+		overflow-x:scroll;
+	}
+	
+	#block{
+		height:100%;
+		width:300px;
+		border:1px solid green;
+		background-color:whitesmoke;
+		color:blue;
+		text-align:justify;
+	}
+ </style>
+	
+</head>
+<body id="bodycontainer"  ng-app="webappApp" ng-controller="CurrencyController" ng-init="loadDisplays()">
+	<!-- Add your site or application content here -->
+	<div id="loading"></div>
+	<header class="bg-dark text-white pl-4 pr-4 ">
+	  <div ng-include="'include/sidebar.html'"></div>
+	</header>
+	
+<div class="row"><button class="btn btn-primary btn-lg btn-block" id="addDialog"><img src="resources/images/addschedule.png"/>Add Scenerio</button>
+</div>
+	<div id="scenerio-dialog" title="Scenerio Dialog"  style="display:none;">
+		<div class="row">
+			<div class="col-sm-8">
+			<fieldset>
+				<label for="name">Name:</label>
+				<input type="text" name="name" id="name" class="form-control">
+				<span id="nerror"></span>
+				
+			</fieldset>
+			</div>
+		</div><br>
+		
+		<div class="row">
+			<div class="col-sm-12">
+			<div id="divbox">
+			<table border="0" id="display">
+				<tbody>
+					<tr>
+					
+					</tr>
+					
+				</tbody>
+			</table>
+			<span id="lerror"></span>
+			</div>
+			</div>
+		</div><br>
+	</div>
+	<div class="row">
+			<div class="col-sm-12">
+			<fieldset>
+				<table class="table table-bordered " id="scenerio-table">
+					<thead class="thead-light">
+					<tr>
+						<th>Scenerio Name</th>
+						<th>Descriptions</th>
+						<th>Actions</th>
+					</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</fieldset>
+			</div>
+		</div>
+
+<!-- bower:js -->
+      
+<script src="resources/js/angular.min.js"></script>
+<script src="resources/js/angular-route.js"></script>
+<!-- endbower -->		
+
+	
+<script src="resources/js/jquery-3.3.1.min.js"></script>
+<script src="resources/js/include.js"></script>
+<script src="resources/js/bootstrap.js"></script>
+<script src="resources/js/bootstrap.min.js"></script>
+<script src="resources/js/jquery-ui.js"></script>
+<script src="resources/js/scenario.js"></script>
+
+
+<script src="resources/scripts/app.js"></script>
+<script src="resources/scripts/controllers/main.js"></script>
+<script src="resources/scripts/controllers/CurrencyService.js"></script>
+<script src="resources/scripts/controllers/CurrencyController.js"></script>
+<script src="resources/js/sidebar.js" ></script>
+  
+</body>
+</html>

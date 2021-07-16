@@ -1,0 +1,20 @@
+h2
+{
+    font-family: sans-serif;
+    color: white;
+    font-style:italic;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.container-flude>.row>.col-lg-12>.col-lg-4>.left-section{
+    collapse:collapse;
+    background-color: #dddddd;
+
+}
+.container-flude>.row>.col-lg-12>.col-lg-8>.right-section{
+    collapse:collapse;
+    background-color: #dddddd;
+
+}
+

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>server</display-name>
+
+<servlet>
+    <!-- Override init parameter to avoid nasty -->
+    <!-- file locking issue on windows.         -->
+    <servlet-name>default</servlet-name>
+    <init-param>
+        <param-name>useFileMappedBuffer</param-name>
+        <param-value>false</param-value>
+    </init-param>
+</servlet>
+	<servlet>
+		<servlet-name>dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:dispatcher-mvc.xml</param-value>
+		</init-param>
+		<init-param>
+			<param-name>useFileMappedBuffer</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet>
+		<servlet-name>client</servlet-name>
+		<servlet-class>com.abps.websocket.ApplicationWebSocketServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet>
+		<servlet-name>vnc</servlet-name>
+		<servlet-class>com.abps.websocket.digital.vnc.DigitalVncWebSocketServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet>
+		<servlet-name>kmm</servlet-name>
+		<servlet-class>com.abps.websocket.kmm.KmmWebSocketServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet>
+		<servlet-name>deskbar</servlet-name>
+		<servlet-class>com.abps.websocket.deskbar.DeskBarWebSocketServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+
+	<servlet-mapping>
+		<servlet-name>dispatcher</servlet-name>
+		<url-pattern>/app/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>client</servlet-name>
+		<url-pattern>/client/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>vnc</servlet-name>
+		<url-pattern>/vnc/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>kmm</servlet-name>
+		<url-pattern>/kmm/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>deskbar</servlet-name>
+		<url-pattern>/deskbar/*</url-pattern>
+	</servlet-mapping>
+	<!-- <filter> <filter-name>springSecurityFilterChain</filter-name> <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> 
+		</filter> <filter-mapping> <filter-name>springSecurityFilterChain</filter-name> 
+		<url-pattern>/users/*</url-pattern> <url-pattern>/user/*</url-pattern> </filter-mapping> -->
+
+
+</web-app>

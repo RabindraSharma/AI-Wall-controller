@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+<head>
+
+<meta charset="utf-8">
+<title></title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+
+<!-- integrating  here video effects css-->
+    <link rel="stylesheet" href="resources/css/bootstrapv4.5.1.css">
+    <link rel="stylesheet" href="resources/css/jquery-ui.css">
+    <link rel="stylesheet" href="resources/css/jquery-ui.theme.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="resources/css/signle-status.css">
+    <!-- <link rel="stylesheet" href="resources/metro/css/metro-all.min.css"> -->
+    <link rel="stylesheet" href="resources/css/fnon.min.css">
+    <link rel="stylesheet" href="resources/css/custom-confirm.css">
+		<link rel="stylesheet" href="resources/css/sidebar.css">
+		<link rel="stylesheet" href="resources/fonts/font-awesome-4.7.0/css/font-awesome.css">
+   
+</head>
+<body class="bg-light">
+	<!-- Add your site or application content here -->
+	<div id="loading"></div>
+	<header>
+		<nav class="navbar navbar-expand bg-white navbar-fixed-top">
+			<div class="container-fluid">
+				<a href="#" class="nav-link">Signle Status</a>
+			</div>
+		</nav>
+	</header>
+
+	<!-- Gallery  section -->
+	<div class="container-fluid bg-light" id="signleStatus">
+        <div class="row ">
+            <div class="col-md-12 p-2">
+                <div class="bg-white border-bottom p-3">
+                  <button class="btn btn-primary btn-sm float-right" id="defineSignle">
+						          
+                      <span class="fa fa-plus"></span>
+                      Define Signle
+                  </button>
+                  <br>
+                </div>
+            </div>
+        </div>     
+  </div>
+  
+  <div class="container-fluid bg-light">
+        <div class="row bg-white p-1 m-1" id="signle-row">
+            
+        </div>
+  </div>
+
+  <div id="loader" class="lds-dual-ring hidden overlay"></div>
+
+      
+      
+
+  <!--Gallery Dialog -->
+  <div id="dialog">
+      <form id="logical-display" name="signle">
+          <div class="form-horizontal">
+              <div class="container">
+                  <div class="row">
+                    <div class="col-md-12">
+                        <label for="display-logic">Logical Display:</label>
+                      <input type="text" name="ld-name" id="ld-name" class="form-control" placeholder="display name">
+                    <span id="name"></span>
+                    </div>
+              <div class="col-md-12">
+                  <label for="resolution">Total Resolution:</label>
+                  <input type="text" disabled name="ld-resolution" id="ld-resolution" class="form-control" placeholder="enter resolution">
+              </div>
+              <div class="col-md-12">
+                  <table class="table table-responsive">
+                      <thead>
+                        <tr>
+                            <th>Rows</th>
+                            <th>Column</th>
+                            <th>Resolution</th>
+                            <th>Host</th>
+                            <th>Rowspan</th>
+                            <th>Colspan</th>
+                            <th>Identify</th>
+                        </tr>
+                      </thead>
+                      <tbody id="add-display"></tbody>
+                  </table>
+              </div>
+                  </div>
+              </div>
+          </div>
+      </form>
+  </div>
+
+<section class="navbar navbar-expand-md bg-light  h-100vh">
+    <div class="col">
+      <div class="group-item">
+        <a href="${company}"  target="_blank" class=" float-right p-2">${title}</a>
+        <img src='' class="float-right p-2"/>
+      </div>
+      <br>
+        <p class="text-right">2020, All rights reserved.</p>
+    </div>
+</section>
+  
+		
+	<!-- build:js(.) scripts/vendor.js -->
+	<!-- bower:js -->
+      
+	    <script src="resources/js/angular.min.js"></script>
+	    <script src="resources/js/angular-route.js"></script>
+	<!-- endbower -->
+	
+	<!--video-efects js-->
+        <script src="resources/js/jquery.min.js"></script>
+        <script src="resources/js/bootstrap4.5.1.min.js"></script>
+        <script src="resources/js/jquery-ui.js"></script>
+        <script src="resources/js/fnon.min.js"></script>
+        <script src="resources/js/custom-confirm.js"></script>
+        <script src="resources/js/signle-status.js"></script>
+        <!-- <script src="resources/metro/js/metro.min.js"></script>
+        <script src="resources/metro/js/metro.js"></script>
+         -->
+       
+	
+	
+	<!-- endbuild -->
+
+	<!-- build:js({.tmp,app}) scripts/scripts.js -->
+	<script src="resources/scripts/app.js"></script>
+	<script src="resources/scripts/controllers/main.js"></script>
+	<script src="resources/scripts/controllers/CurrencyService.js"></script>
+	<script src="resources/scripts/controllers/CurrencyController.js"></script>
+  <script src="resources/js/sidebar.js" ></script>
+  
+  
+
+ 
+
+	<!-- endbuild -->
+</body>
+</html>
+

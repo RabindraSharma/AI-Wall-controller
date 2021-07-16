@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+<head>
+<script language="javascript" type="text/javascript">
+  function init()
+  {
+	 if (!window.WebSocket) {
+		 alert("WebSocket not supported by this browser");
+		 setInterval(function(){  refreshdisplays() }, 5000);
+	 }else{
+		  createWebSocket();
+	 }
+  
+  }
+
+  function createWebSocket()
+  {
+	var host = window.location.hostname;
+	var wsUri = "wss://"+host+":8469/events/";  
+    websocket = new WebSocket(wsUri);
+    websocket.onopen = function(evt) { onOpen(evt) };
+    websocket.onclose = function(evt) { onClose(evt) };
+    websocket.onmessage = function(evt) { onMessage(evt) };
+    websocket.onerror = function(evt) { onError(evt) };
+  }
+
+  function onOpen(evt)
+  {
+	  console.log( "CONNECTED");
+  }
+
+  function onClose(evt)
+  {
+    console.log("DISCONNECTED");
+    var r = confirm("Connection time out. Refresh the page!");
+    if (r == true){
+      window.location.reload();
+    }
+  }
+
+  function onMessage(evt)
+  {
+    console.log('Message : ' + evt.data);
+    refreshdisplays();
+  }
+  
+  function refreshdisplays(){
+	  console.log( "Refresh Displays.");
+	  var scope = angular.element(document.getElementById('bodycontainer')).scope();
+	  scope.loadDisplays();
+  }
+
+  function onError(evt)
+  {
+    console.log('Error data : ' + evt.data);
+  }
+
+  function doSend(message)
+  {
+    console.log("SENT: " + message);
+    websocket.send(message);
+  }
+  	window.addEventListener("load", init, false);
+
+  </script>
+<meta charset="utf-8">
+<title></title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<!-- build:css(.) styles/vendor.css -->
+<!-- bower:css -->
+<link rel="stylesheet" href="resources/css/bootstrap.css" />
+<!-- endbower -->
+<!-- endbuild -->
+<!-- build:css(.tmp) styles/main.css -->
+<link rel="stylesheet" href="resources/css/style2.css">
+<!-- endbuild -->
+</head>
+<body id="bodycontainer"  ng-app="webappApp" ng-controller="Layoutv2Controller" ng-init="loadDisplays()">
+	<!-- Add your site or application content here -->
+	<header>
+		<p>Display Manager(Id-{{pin}}  Code-{{projectcode}})</p>
+		<div class="main">
+		<a href="index.html"><img src="resources/images/logout.png" class="pull-right"/></a>
+		</div>
+	</header>
+	<div container class="container" id="container">
+		<table class="tftable" border="0">
+			<tr ng-repeat="display in displays">
+				<td><img src="resources/images/wall.jpg">
+				</td>	
+				<td>
+					<div class="custom_scrollbar" ng-repeat="zone in display.zones">
+						<ul ng-repeat="zonecoordinate in zone.zonecoordinates">
+							<li><button type="button" class="btn btn-secondary" disabled>{{display.id}}({{zonecoordinate.name}})</button></li>
+							
+							<li ng-repeat="layout in zonecoordinate.layouts"><a ng-if="layout.active"
+								class="btn btn-info"  ng-click="loadlayout(display.id,zonecoordinate.name,layout.name)">{{layout.name}}</a>
+								<a ng-if="!layout.active"
+								class="btn btn-primary"  ng-click="loadlayout(display.id,zonecoordinate.name,layout.name)">{{layout.name}}</a>
+								</li>
+						</ul>
+						<div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div id="fileModel" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="model-content bg-default">
+			<div class="model-header text-white bg-primary">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h3 class="modal-title">Upload BackUp File</h3>
+			</div>
+			<div class="modal-body">
+				<form id="file-upload" method="post" action="#" enctype="multipart/form-data">
+				<label>Select BackUp File:<input type="file" name="file" id="fileload" class="form-control" /></label>
+				<button type="button" name="file-btn" id="btnFile" class="btn btn-primary">Upload</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	</div>
+
+
+
+	<!-- build:js(.) scripts/vendor.js -->
+	<!-- bower:js -->
+	<script src="resources/js/jquery-3.3.1.min.js"></script>
+	<script src="resources/js/angular.min.js"></script>
+	<script src="resources/js/bootstrap.js"></script>
+	<script src="resources/js/file-upload.js"></script>
+	<script src="resources/js/angular-route.js"></script>
+	<!-- endbower -->
+	<!-- endbuild -->
+
+	<script src="resources/scriptsv2/controllers/Layoutv2App.js"></script>
+	<script src="resources/scriptsv2/controllers/Layoutv2.js"></script>
+	<script src="resources/scriptsv2/controllers/Layoutv2Service.js"></script>
+	<script src="resources/scriptsv2/controllers/Layoutv2Controller.js"></script>
+	
+	<!-- endbuild -->
+</body>
+</html>
+

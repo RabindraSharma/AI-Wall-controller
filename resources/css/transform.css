@@ -1,0 +1,31 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+i{
+    background: #fff;
+    margin-bottom: 4px;
+    color: #fff;
+    border-radius: 18px;
+    padding: 4px;
+    cursor: pointer;
+}
+input[type='range']{
+    color: blue;
+}
+
+@media all and (max-width:500px){
+    .table>tbody{
+        width: 100%;
+    }
+    tbody tr td{
+        width: 100%;
+    }
+    tbody tr td:last{
+        width: 100%;
+    }
+    tbody tr td>input{
+        width: 100%;
+    }
+}

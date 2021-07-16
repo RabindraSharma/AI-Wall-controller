@@ -1,0 +1,536 @@
+<!doctype html>
+<html>
+<head>
+<script src="resources/js/websocket.js" type="text/javascript"></script>
+<meta charset="utf-8">
+<title></title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> -->
+
+    <link rel="stylesheet" href="resources/css/bootstrapv4.5.1.css">
+    <link rel="stylesheet" href="resources/css/video-effects.css">
+    <link rel="stylesheet" href="resources/css/sidebar.css">
+    <link rel="stylesheet" href="resources/css/fnon.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="resources/iconfont/material-icons.css">
+    <link rel="icon" href="resources/images/icons/abps.ico">
+    <link href="resources/css/swaper-min.css" rel="stylesheet"/>  
+    <link href="resources/css/cube.css" rel="stylesheet"/>  
+    <link rel="stylesheet" href="resources/metro/css/metro-all.min.css">
+    <link rel="stylesheet" href="resources/fonts/font-awesome-4.7.0/css/font-awesome.css">
+    <script src="resources/js/d3.v4.min.js"></script>
+    <script src="resources/js/validation.js"></script> 
+
+    <script src="static/bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="static/src/voice-recognition.html">
+    <style>
+      .screen{
+        cursor: pointer;
+      }
+    .audio{
+    cursor: pointer;
+    }
+    .bottom{
+      position: fixed;
+      bottom: 0%;
+    }
+
+    
+
+
+.switch {
+  position: relative;
+  display: flex;
+  width: 150px;
+  height: 100px;
+  
+  
+}
+
+footer{
+  bottom: 0%;
+  position: fixed;
+  width: 100%;
+
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  overflow: hidden;
+  
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* background-color: #181717; */
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  z-index: 1;
+  content: "";
+  height: 96px;
+  width: 96px;
+  left: 2px;
+  bottom: 2px;
+  /* background-color: #dedede; */
+      /*-webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.22);
+    /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.22);*/
+  -webkit-transition: .4s;
+  transition: all 0.4s ease-in-out;
+}
+.slider:after {
+  position: absolute;
+  left: 0;
+  z-index: 1;
+   content: "";
+    font-size: 45px;
+    text-align: left !important;
+    line-height: 95px;
+    padding-left: 0;
+    width: 260px;
+    /* color: #fff; */
+    height: 100px;
+    border-radius: 100px;
+    /* background-color: #0a0a0ade; */
+    -webkit-transform: translateX(-250px);
+    -ms-transform: translateX(-250px);
+    transform: translateX(-250px);
+    transition: all 0.4s ease-in-out;
+}
+
+input:checked + .slider:after {
+  -webkit-transform: translateX(150px);
+  -ms-transform: translateX(150px);
+  transform: translateX(150px);
+   
+  /*width: 235px;*/
+ 
+  padding-left: 25px;
+}
+
+input:checked +.slider{
+  /* border: 1px solid gray; */
+  background-color:#fff;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(150px);
+  -ms-transform: translateX(150px);
+  transform: translateY(150px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 100px;
+
+}
+
+.slider.round:before {
+  border-radius: 100px;
+  -webkit-transform: translateX(150px);
+  -ms-transform: translateX(150px);
+  transform: translateY(150px);
+  
+}
+.slider.round:after {
+  border-radius: 100px;
+}
+.absolute-no {
+  position: absolute;
+  left: 0;
+  color: darkslategrey;
+  text-align: right !important;
+    font-size: 45px;
+    width: calc(100% - 25px);
+    height: 100px;
+    line-height: 95px;
+    cursor: pointer;
+}
+
+.frame{
+  background-color: white;
+}
+.border-left{
+  border-left:4px dashed blue;
+  
+}
+a:not([class]) {
+    position: relative;
+    /* color: #0366d6; */
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+</style>
+    
+</head>
+<body id="bodycontainer"  ng-app="webappApp" ng-controller="CurrencyController" ng-init="loadDisplays()">
+  <!-- Add your site or application content here -->
+  <div id="loading"></div>
+  <header class="bg-dark text-white pl-4 pr-4 ">
+    <div ng-include="'include/sidebar.html'"></div>
+  </header>
+
+  <section>
+    
+  
+  
+  <div class="container-fluid" id="mainRow">
+            <!--<div class="row bg-light p-2">
+                <div class=" col col-md-2 col-sm-2 col-lg-2 col-xs-2">
+                    <div class="d-flex-block">
+                        <img src="resources/images/wall.jpg" alt="" class="src">
+                            <div id="display" class="text-muted"></div>
+                           <a  class="screen"><img src="resources/images/record.png"/>ScreenShot & Recordings</a>
+                            <br/>
+                           <a ng-if="isAudioLicense == true" ng-click="openAudioManager(display.id)" class="screen" href=""><img src="resources/images/audio.png"/>Audio Manager</a>                
+                    </div>
+                   
+                </div>
+                <div class=" col col-md-10 col-sm-10 col-xs-10 col-lg-10">
+                    <div container class="container source-l"></div>
+                </div>
+           </div>-->
+   </div>
+      
+
+
+<!-- Modal: modalAbandonedCart-->
+<div class="modal fade" id="TilesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true" data-backdrop="false">
+  <div class="modal-dialog modal-side modal-center modal-notify modal-info bg-info" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header bg-light text-info">
+            <h3>Ornament Configuration</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" class="white-text text-danger">&times;</span>
+        </button>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body modal-auto">
+            <div class="container">
+                <div class="form-group">
+                    <form action="" name="tiles" id="form1">
+                        <div class="row">
+                                 <div class="col-md-10">
+                                    <input type="checkbox" id="displaycheck" class="checksbox" data-role="popover" data-popover-text="If this is unchecked, ornament will not be applied.." data-popover-position="bottom" >Display Ornament
+                                </div>
+                               
+                                <div class="col-md-12">
+                                    <label for="dsplay">Height (%)</label>
+                                    <input type="number" id="heights" value="5" min="1" max="50" class="form-control" data-role="popover" data-popover-text="Percentage of height width where ornament need to be shown" data-popover-position="bottom" >
+                                </div>
+                               
+                                <div class="col-md-12">
+                                    <label for="dsplay">Forground Color</label>
+                                    <input type="color" id="forgroundV" value="#ffffff" class="form-control">
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="background">Background Color</label>
+                                    <input type="color" id="backgroundV" value="#000000"  class="form-control">
+                                </div>
+                                <div class="col-md-12">
+                                    <input type="checkbox" id="accept" class="checksbox" data-role="popover" data-popover-text="If this is checked, source name will be displayed.." data-popover-position="bottom">Show Source Name(<span id="sourceName"></span>)
+                                </div>
+                                <div class="col-md-12">
+                                    <input type="checkbox" id="displayBorder" class="checksbox" data-role="popover" data-popover-text="If this is checked, border will be at four sides.." data-popover-position="bottom"> <span>Display Border(If checked, border will be displayed at all four sides)</span>
+                                </div>
+                                <div class="col-md-12">
+                                    <input type="checkbox" id="blink" class="checksbox"> <span>Blink</span>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label for="dsplay">Blink Duration</label>
+                                    <input type="number" id="duration" value="10" min="1" max="60" class="form-control">
+                                </div>
+                                <div class="col-md-12">
+                                    <button class="btn btn-primary btn-sm float-right" id="indicator">Add Indicator</button>
+                                </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="justify-content-center table-responsive table-hover">
+                                <table class="table-bordered" id="indicateTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Type</th>
+                                            <th>Forground</th>
+                                            <th>Background</th>
+                                            <th>Logo Path</th>
+                                            <th>Date Format</th>
+                                            <th>Html String</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                    <tfoot></tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+
+
+                 </div>
+            </div>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-right">
+        <button type="button" class="btn btn-sm  btn-info float-right" id="cnfg">Apply</button>
+        <!--<button type="button" class="btn btn-outline-info waves-effect float-right" data-dismiss="modal">Cancel</button>-->
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!-- Modal: modalAbandonedCart->
+
+    <!-- Modal: modalAbandonedCart-->
+<div class="modal fade right" id="Indicators" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true" data-backdrop="false">
+<div class="modal-dialog modal-side modal-center modal-notify modal-info bg-info" role="document">
+  <!--Content-->
+  <div class="modal-content">
+    <!--Header-->
+    <div class="modal-header bg-light text-info">
+          <h3>Indicator Configuration</h3>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true" class="text-danger">&times;</span>
+      </button>
+    </div>
+
+    <!--Body-->
+    <div class="modal-body">
+          <div class="container">
+              <div class="form-group">
+                  <!--<form action="" name="indicator">-->
+                      <div class="row p-2">
+                              <div class="col-md-12">
+                                  <label for="type">Types</label>
+                                  <select name="indicator-type" id="type" class="form-control">
+                                      <option value="" selected>Select type</option>
+                                      <option value="logo">logo</option>
+                                      <option value="date">date</option>
+                                      <option value="html">html</option>
+                                  </select>
+                                  <span class="text-danger" id="intype"></span>
+                              </div>
+                              <div class="col-md-12">
+                                  <label for="fog">Forground Color</label>
+                                  <input type="color"    class="form-control forground">
+                              </div>
+                              
+                              <div class="col-md-12">
+                                  <label for="back">Background Color</label>
+                                  <input type="color"    class="form-control background">
+                              </div>
+                              <div class="col-md-12" id="logo">
+                                  <label for="logo">Logo Path</label>
+                                  <input type="text" id="path" required placeholder="Please enter your full file/images path" class="form-control" required="required">
+                                  <span class="text-danger" id="indPath"></span>
+                            </div>
+
+                              <div class="col-md-12" id="date">
+                                <label for="formate">Date Format</label>
+                                <input type="text" id="date-format" value="yyyy-MM-dd'T'HH:mm:ss Z" placeholder="Enter date format[yyyy-MM-dd'T'HH:mm:ss Z]" class="form-control">
+                                <span><a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html">For help?</a></span>
+                               
+                            </div>
+
+                            <div class="col-md-12" id="html">
+                                <label for="html">Html String</label>
+                                <input type="text" id="html-string" required placeholder="Input* HTML string <span> Welcome to tiles technology</span>" class="form-control">
+                               <span id="indHtml" class="text-danger"></span>
+                            </div>
+                      </div>
+                      
+        <!--</form>-->
+              </div>
+          </div>
+    </div>
+
+
+
+
+    <!--Footer-->
+    <div class="modal-footer justify-content-right">
+      <button type="button" class="btn btn-info float-right" id="saveInd">Save</button>
+      <button type="button" class="btn btn-outline-info waves-effect float-right" data-dismiss="modal">Cancel</button>
+    </div>
+  </div>
+  <!--/.Content-->
+</div>
+</div>  <!--Tiles Modal close here-->
+  
+
+<!--<div id="fileModel" class="modal fade right" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" role="dialog" aria-hidden="true" data-backdrop="false">
+  <div class="modal-dialog">
+    <div class="model-content bg-light modal-center">
+      <div class="model-header text-white">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+        <h3 class="modal-title">Upload BackUp File</h3>
+      </div>
+      <div class="modal-body">
+        <form id="file-upload" method="post" action="#" enctype="multipart/form-data">
+        <label>Select BackUp File:<input type="file" name="file" id="fileload" class="form-control" /></label>
+        <button type="button" name="file-btn" id="btnFile" class="btn btn-primary">Upload</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>-->
+</section>
+ <!-- Swiper -->
+
+  <div class="swiper-container" id="slider">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"  onclick="goToPage(userUrls);">
+          <p class="text-center text-white" style="font-size: 13px;"><strong>User & Roles</strong></p>
+            <i class="fa fa-user ml-8 mb-6 text-white"></i>
+        </div>
+        <div class="swiper-slide"  onclick="goToPage(downloadUrls);">
+          <p class="text-center text-white" style="font-size: 13px;"><strong>Downloads</strong></p>
+            <i class="fa fa-download ml-8 mb-6 text-white"></i>
+        </div>
+      </div>
+  </div>
+
+  <!-- Video wall chat  -->
+<div class="circle-dot">
+    <!-- <img src="resources/images/icons/boat.png" alt="" class="img-round"> -->
+    <i class="fa fa-ellipsis-h fa-2x"></i>
+</div>
+  <!-- End Video wall chat -->
+
+  <!-- Video wall chat container -->
+<div class="video-wall-chat">
+    <div class="container">
+        <div class=" wall-chat bg-light m-1">
+          <div class="wall-header bg-dark">
+              <span class="fa fa-comments-o text-white p-4"></span>
+              <span class="fa fa-minus minimize text-white p-4 float-right"></span>
+          </div>
+          <div class="wall-body border-bottom">
+
+          </div>
+          <div class="wall-footer">
+            <!--<div class="row">-->
+            <div class="form">
+              <form id="recognition-form">
+                <voice-recognition id="recognition-element"></voice-recognition>
+                <div class="row">
+                  <div class="col-12 d-flex d-flex-row">
+                    <input type="text" placeholder="Type here..."
+                      class=" bg-white ml-1" id="send"
+                      onkeypress="sendData(event);"> <span text="submit"
+                      class="fa fa-microphone bg-light mic pt-4 ml-1" id="on"></span> <span
+                      text="submit" class="fa fa-microphone-slash bg-light mic pt-4 ml-1" id="off"></span>
+                    <!-- <span class="material-icons bg-light mic mr-1" id="sent">subdirectory_arrow_left</span> -->
+                    <span class="material-icons bg-light mic pt-4 ml-1 mr-1" id="sent">keyboard_return</span>
+                  </div>
+                </div>
+              </form>
+            </div>
+        <!--</div>-->
+          </div>
+        </div>
+    </div>
+</div>
+  <!-- End Video wall chat container -->
+
+
+<footer class="footer bg-light">
+    <div class="col">
+      <div class="group-item">
+        <a href="${company}"  target="_blank" class=" float-right pt-2 mt-4">${title}</a>
+        <img src='${company_logo}' class="float-right pt-2 mt-4"/>
+      </div>
+      <br>
+        <p class="text-right text-info">&copy;2021, All rights reserved.</p>
+    </div>
+  </footer>
+  
+    
+  <!-- build:js(.) scripts/vendor.js -->
+  <!-- bower:js -->
+      
+      <script src="resources/js/angular.min.js"></script>
+      <script src="resources/js/angular-route.js"></script>
+  <!-- endbower -->
+  
+  <!--video-efects js-->
+        <script src="resources/js/jquery.min.js"></script>
+        <!--<script src="resources/js/bootstrap4-toggle.js"></script>-->
+        <script src="resources/js/bootstrap4.5.1.min.js"></script>
+        
+        <script src="resources/metro/js/metro.min.js"></script>
+        <script src="resources/metro/js/metro.js"></script>
+        <script src="resources/js/swaper.js"></script>
+        <script src="resources/js/video-effects.js"></script>
+        <script src="resources/js/fnon.min.js"></script>
+        
+        <script src="resources/js/d3.v4.min.js"></script>
+        <script src="resources/js/d3-selection-multi.v1.min.js"></script>
+  
+  
+  <!-- endbuild -->
+
+  <!-- build:js({.tmp,app}) scripts/scripts.js -->
+  <script src="resources/scripts/app.js"></script>
+  <script src="resources/scripts/controllers/main.js"></script>
+  <script src="resources/scripts/controllers/CurrencyService.js"></script>
+  <script src="resources/scripts/controllers/CurrencyController.js"></script>
+  <script src="resources/js/sidebar.js" ></script>
+  <script src="static/js/main2.js"></script>
+  <script src="resources/js/wall-assistant.js" ></script>
+  
+  <script>
+    var swiper = new Swiper('.swiper-container', {
+      effect: 'cube',
+      grabCursor: true,
+      autoplay:{
+            delay:2000
+      },
+      cubeEffect:{
+        shadow: true,
+        slideShadows: true,
+        shadowOffset: 20,
+        shadowScale: 0.94,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+      },
+    });
+
+    function goToPage(link){
+      if(pro){
+        window.location.href =link;
+      }else{
+        Fnon.Hint.Danger('You need pro license to use this feature.', {
+                callback:function(){
+                }
+          });
+      }
+       
+    }
+
+  </script>
+
+ 
+
+  <!-- endbuild -->
+</body>
+</html>

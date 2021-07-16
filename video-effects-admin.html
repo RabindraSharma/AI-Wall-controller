@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="resources/css/bootstrapv4.5.1.css">
+        <link rel="stylesheet" href="resources/css/transform.css">
+        <link rel="stylesheet" href="resources/css/font-awesome4.7.0.css">
+        <link rel="stylesheet" href="resources/css/jquery-ui.css">
+    </head>
+<body>    
+  
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-white bg-dark">
+            <a class="navbar-brand" href="#">Video Effects</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav w-100">
+                <li class="nav-item  ml-auto">
+                <a href="index.html"><img src="resources/images/logout.png" class="nav-link"/></a>
+                </li>
+              </ul>  
+            </div>
+          </nav>
+	</header>
+    <div id="alertDialog" title="Message">
+    </div>
+    <div id="successDialog">
+    </div>	
+      <div class="container-fluid">
+        <div class="table-responsive p-2 w-auto">
+          <table class="table table-bordered table-striped table-hover" id="videoTable">
+              <thead class="bg-primary thead-light">
+                  <tr>
+                      <th>Source</th>
+                      <th>Brightness</th>
+                      <th>Contrast</th>
+                      <th>Hue</th>
+                      <th>Saturation</th>
+                      <th>Rotation</th>
+                      <th>Cropping</th>
+                  </tr>
+              </thead>
+              <tbody id="videoTbody">
+              </tbody>
+       </table>
+    </div>
+    </div>
+    <script src="resources/js/jquery.min.js"></script>
+    <script src="resources/js/jquery-ui.js"></script>
+    <script src="resources/js/bootstrap4.5.1.min.js"></script>
+    <script src="resources/js/transform.js"></script>   
+    
+</body>
+</html>

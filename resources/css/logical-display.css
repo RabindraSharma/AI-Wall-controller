@@ -1,0 +1,95 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+*{
+  margin: 0;
+  padding: 0;
+  font-variant: normal;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'Arial Narrow', Arial, sans-serif;
+}
+
+
+#dialog{
+  display: none;
+}
+
+ .table td {
+  padding: 0.75rem;
+  /* vertical-align: top; */
+  
+}
+.table{
+  border-collapse: separate;
+  border: none;
+}
+.table-bordered td{
+  border: 1px solid black;
+}
+
+table{
+  border-spacing: 6px;
+}
+.rectangle{
+  line-height: 6;
+  
+}
+.text-center{
+  vertical-align: middle;
+}
+/*------------- Loader class -------------  */
+
+.lds-dual-ring.hidden { 
+  display: none;
+  }
+  .lds-dual-ring {
+    display: inline-block;
+    
+    width: 80px;
+    height: 80px;
+  }
+  .lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 25% auto;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+  @keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  
+  .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(119, 118, 118, 0.8);
+      z-index: 999;
+      opacity: 0.9;
+      transition: all 0.5s;
+  }
+ 
+  /* ---------------- Collapsible Display------------ */
+  .card-header .fa {
+    transition: .3s transform ease-in-out;
+  }
+  .card-header .collapsed .fa {
+    transform: rotate(90deg);
+  }
+  .fa{
+    cursor: pointer;
+    border-radius: 100px;
+    background-color: transparent rgba(red, green, blue, alpha);
+  }

@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+
+<meta charset="utf-8">
+<title></title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+
+<link rel="stylesheet" href="resources/css/bootstrap.css" />
+<link rel="stylesheet" href="resources/css/jquery-ui.css" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="icon" href="resources/images/icons/abps.ico" type="image/png">
+
+<link rel="stylesheet" href="resources/css/style.css">
+<link rel="stylesheet" href="resources/css/sidebar.css">
+
+</head>
+
+<body id="bodycontainer"  ng-app="webappApp" ng-controller="CurrencyController" ng-init="loadSchedules()">
+	<!-- Add your site or application content here -->
+	<div id="loading"></div>
+	<header class="bg-dark text-white pl-4 pr-4 ">
+	  <div ng-include="'include/sidebar.html'"></div>
+	</header>
+  
+			<div id="emptyschedulediv">
+			</div>
+		<div class="btn btn-primary btn-block"><a onclick='createSchedule()' class="btn btn-primary"><img src="resources/images/addschedule.png"/></a>
+	      	<input type="radio" name="scheduletype" value="non-recursive" checked>Non-Recursive
+	      	<input type="radio" name="scheduletype" value="recursive">Recursive
+	      </div>
+	<div container class="container" id="container">
+		<table  border="0">
+			<tbody>
+			<tr ng-repeat="schedule in schedules">
+				<td><img src="resources/images/wall.jpg">
+					<p>{{ schedule.displayId | limitTo:20}}</p></td>
+				<td>
+					<div class="custom_scrollbar">
+						<ul>
+							<li><button type="button" class="btn btn-secondary" disabled>{{schedule.displayId}}({{schedule.zonecoordinatename}})</button></li>
+							<li ng-repeat="layoutschedules in schedule.layoutSchedules">
+								<a ng-if="layoutschedules.IsSchedulerRunning==false"
+								class="btn btn-primary"  ng-click="startSchedule(schedule.displayId,schedule.zonecoordinatename,layoutschedules.scheduleName)">
+								{{layoutschedules.scheduleName}}<img src="resources/images/start-icon.png"/></a>
+								<a ng-if="!layoutschedules.IsSchedulerRunning==false"
+								class="btn btn-info"  ng-click="stopSchedule(schedule.displayId,schedule.zonecoordinatename,layoutschedules.scheduleName)">
+								{{layoutschedules.scheduleName}}<img src="resources/images/stop-icon.png"/></a>
+							</li>
+						</ul>
+						<div>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+		
+	</div>
+<div id="fileModel" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+	
+		<div class="model-content bg-default">
+			<div class="model-header text-white bg-info">
+				<button type="button" class="close" data-dismiss="modal"><img src="resources/images/delete-icon.png"></button>
+				<h3 class="modal-title">Upload Backup File</h3>
+			</div>
+			<div class="modal-body">
+				<form id="fileuploadForm" method="post"  enctype="multipart/form-data">
+				<label>Select Your File:<input type="file" name="file" id="fileload" class="form-control" /></label>
+				
+				<input type="submit" name="file-btn" id="btnFile" class="btn btn-primary" value="Upload"/>
+				</form>
+			</div>
+			<br><br>
+			<div class="modal-footer">
+				
+			</div>
+		</div>
+	</div>
+
+</div>
+
+	<footer>
+		<div class="inside">
+			<a href="${company}"  target="_blank">
+				<!-- Recordings Archive </a> -->${title}</a>
+
+			<p>
+				2018, All rights reserved.<br>
+			</p>
+		</div>
+	</footer>
+
+	
+	<script src="resources/js/jquery-3.3.1.min.js"></script>
+	<script src="resources/js/include.js"></script>
+	<script src="resources/js/jquery-ui.js"></script>
+	<script src="resources/js/angular.min.js"></script>
+	<script src="resources/js/bootstrap.js"></script>
+	<script src="resources/js/file-upload.js"></script>
+	<script src="resources/js/angular-route.js"></script>
+	<!-- endbower -->
+	<!-- endbuild -->
+
+	<!-- build:js({.tmp,app}) scripts/scripts.js -->
+	<!--<script src="resources/scripts/controllers/scheduleController.js"></script>-->
+	<script src="resources/scripts/app.js"></script>
+	<script src="resources/scripts/controllers/main.js"></script>
+	<script src="resources/scripts/controllers/CurrencyService.js"></script>
+	<script src="resources/scripts/controllers/CurrencyController.js"></script>
+	<script src="resources/js/sidebar.js" ></script>
+	<!-- endbuild -->
+</body>
+</html>
+

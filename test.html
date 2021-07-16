@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title></title>
+<script src="https://localhost:8469/resources/js/jquery-3.3.1.min.js">
+</script>
+</head>
+
+<body onload='getViewportSize();' onresize='getViewportSize();' style="position: absolute">
+				<div class="div1" id="div1" style="border:1px red solid;position:absolute">
+				</div>
+				<div class="div2" id="div2"  style="border:1px green solid;position:absolute">
+				</div>
+<script src="https://localhost:8469/resources/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+    	var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0); 
+    	var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    	
+    	$('.div1').load('ticker.html');
+		$('.div2').load('video.html');
+		var div1style = document.getElementById('div1');
+		div1style.style.position = "absolute";
+		div1style.style.left = 0+'px';
+		div1style.style.top = 0+'px';
+		div1style.style.width = 1920+'px';
+		div1style.style.height = 540+'px';
+		
+		var div2style = document.getElementById('div2');
+		div2style.style.position = "absolute";
+		div2style.style.left = 0+'px';
+		div2style.style.top = 540+'px';
+		div2style.style.width = 1920+'px';
+		div2style.style.height = 540+'px';
+    });
+    
+    function ShowDivInCenter()
+    {
+       
+    	var viewport_meta = document.getElementById('viewport-meta');
+    	var txt = "";
+    	txt += "<p>Total width/height: " + screen.width + "*" + screen.height + "</p>";
+    	txt += "<p>Available width/height: " + screen.availWidth + "*" + screen.availHeight + "</p>";
+    	txt += "<p>Color depth: " + screen.colorDepth + "</p>";
+    	txt += "<p>Color resolution: " + screen.pixelDepth + "</p>";
+    	//alert(txt);
+    	
+    	var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0); 
+    	var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    	
+    	//alert(window.outerWidth+' x '+window.outerHeight);
+    	getViewportSize();
+    	//alert(w+"--"+h);
+    }
+    
+    function getViewportSize(){
+        var e = window;
+        var a = 'inner';
+        if (!('innerWidth' in window)){
+            a = 'client';
+            e = document.documentElement || document.body;
+        }
+        alert(e[ a+'Width' ]);
+        alert(e[ a+'Height' ]);
+        return { width : e[ a+'Width' ] , height : e[ a+'Height' ] }
+    }
+</script>		
+</body>
+</html>

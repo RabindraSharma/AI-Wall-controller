@@ -1,0 +1,146 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/font-awesome.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+<link rel="import" href="src/voice-recognition.html">
+<link rel="manifest" href="manifest.json">
+</head>
+<body>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/aichat2.js"></script>
+	<script src="js/main2.js"></script>
+	<!-- <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script> -->
+
+
+	<div class="main">
+		<div class="row">
+			<div class="col-md-2 bg-white border-right" id="sidebarLeft">
+				<div class="left-navbar">
+					<div class="left-drawer p-2">
+						<span class="float-left mt-2 ml-0">
+							<h6 class="text text-primary ">Chat</h6>
+						</span> <span
+							class="material-icons m-0 text-default float-right mr-0 pt-1 ml-2 circle"
+							id="cancel">cancel</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-10" id="main">
+				<div class="row bg-light">
+					<div class="main-menu p-2">
+						<div class="menu-icons">
+							<span class="float-left"> <i
+								class="material-icons ml-2 text-primary" id="sidebar">menu</i>
+
+							</span>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="container chat-container ml-1 mb-4 mt-4 pr-4 ">
+					<!-- chat-panel-->
+					<div class="row chats">
+						<div class="chat-panel"></div>
+					</div>
+				</div>
+				<!-- chat-panel-->
+
+				<!--<div class="row">-->
+				<div class="form">
+					<form id="recognition-form">
+						<voice-recognition id="recognition-element"></voice-recognition>
+						<div class="row">
+							<div class="col-12  d-flex d-flex-row">
+								<input type="text" placeholder="Type your comment here"
+									class=" bg-light mr-2 ml-1" id="send"
+									onkeypress="sendData(event);"> <span text="submit"
+									class="material-icons bg-light mic mr-2" id="on">mic</span> <span
+									text="submit" class="material-icons bg-light mr-2 mic" id="off">mic_off</span>
+								<span class="material-icons bg-light mic mr-2" id="sent">subdirectory_arrow_left</span>
+							</div>
+						</div>
+					</form>
+				</div>
+				<!--</div>-->
+
+				<script>
+					var form = document.querySelector('#recognition-form'), inputs = document
+							.querySelector('#send'), sent = document
+							.querySelector('#sent'), micoff = document
+							.querySelector('#off'), micon = document
+							.querySelector('#on'), element = document
+							.querySelector('#recognition-element');
+
+					micon.classList.add('d-none');
+					micoff.addEventListener('click', function(e) {
+						e.preventDefault();
+						element.start();
+						micoff.classList.add('d-none');
+						micon.classList.remove('d-none');
+
+					});
+					micon.addEventListener('click', function(e) {
+						e.preventDefault();
+						element.stop();
+						micoff.classList.remove('d-none');
+						micon.classList.add('d-none');
+
+					});
+					sent
+							.addEventListener(
+									'click',
+									function(e) {
+										e.preventDefault();
+										$('.chat-panel >.row')
+												.append(
+														'<div class="row no-gutters">'
+																+ '<div class="col-md-3 offset-md-9">'
+																+ getRandomClientImage('/aichat/avatars/')
+																+ '<div class="chat-bubble chat-bubble-blue chat-bubble--right float-right">'
+																+ inputs.value
+																+ '</div>'
+																+ '</div>'
+																+ '</div>');
+										messageFromAgent(messageInput);
+										$("#send").val('');
+									});
+					element.addEventListener('result', function(e) {
+						inputs.value = e.detail.result;
+					});
+				</script>
+
+			</div>
+			<div class="row">
+				<div class="popup p-2">
+					<span class="close text-white float-right pt-1" id="close">x</span>
+					<span class="text-white float-left"> <img src="favicon.png"
+						class="rounded w-10">
+					</span> <span class="text-white  text-center ml-1">AIChat </span> <span
+						class="ad2hs-prompt btn btn-dark  btn-sm float-right mr-2">Install</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	</div>
+
+	<div id="loader" style="display: none;">
+		<img id="loading-image" src="img/loader.gif" />
+	</div>
+
+
+	<script src="js/pwa-helper.js"></script>
+</body>
+</html>

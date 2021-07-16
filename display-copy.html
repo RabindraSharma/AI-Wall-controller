@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+
+<meta charset="utf-8">
+<title></title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<!-- build:css(.) styles/vendor.css -->
+<!-- bower:css -->
+<link rel="stylesheet" href="resources/css/bootstrap.css" />
+<link rel="icon" href="resources/images/icons/abps.ico" type="image/png">
+<!-- endbower -->
+<!-- endbuild -->
+<!-- build:css(.tmp) styles/main.css -->
+<link rel="stylesheet" href="resources/css/style.css">
+<link rel="stylesheet" href="resources/css/sidebar.css">
+<!-- endbuild -->
+
+
+
+<link rel="stylesheet" href="resources/css/bootstrapv4.3.1.min.css">
+<script src="resources/js/jquery-3.3.1.min.js"></script>
+ <script src="resources/js/validation.js"></script> 
+  <style>
+	.container-fluid >.container >.row > .col-sm-12 >.display-copy-container-box{
+		height:250px;
+		width:100%;
+		box-shadow:4px 6px 4px 4px whitesmoke;
+		border-radius:4px;
+		background:white;
+		margin-right:30%;
+		border:1px dashed green;
+	}
+	.container-fluid >.container >.row > .col-sm-12 >.display-copy-container-box #divider{
+		border-right:1px dotted gray;
+		height:249px;
+		collapse:'!important';
+	}
+	
+  </style>
+</head>
+<body id="bodycontainer"  ng-app="webappApp" ng-controller="CurrencyController" ng-init="loadDisplays()">
+	<!-- Add your site or application content here -->
+	<header>
+		<div ng-include="'include/sidebar.html'"></div>
+	</header>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-12 col-md-12 col-xl-12">
+				<h1 class="text-info text-center">Copy layouts,schedules from a display to other displays.</h1><hr>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-md-12 col-xl-12">
+					<div class="display-copy-container-box">
+						<div class="col-sm-6 col-md-6 col-xl-6" id="divider"><br>
+							<fieldset>
+								<select class="form-control" id="display-list">
+									<option value='' disabled selected>---Select Displays---</option>
+								</select>
+							</fieldset>
+						</div>
+						<div class="col-sm-6 col-md-6 col-xl-6"><br>
+							<fieldset>
+								<select class="form-control multiple" multiple size="10" id="selectable-list">
+									
+								</select>
+							</fieldset><br>
+							<fieldset>
+								<button class="btn btn-sm btn-primary pull-right" id="copyDisplay" >Copy</button>
+							</fieldset>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
+	</div>
+
+		
+
+
+	<!-- build:js(.) scripts/vendor.js -->
+	<!-- bower:js -->
+	<script src="resources/js/jquery-3.3.1.min.js"></script>
+	<script src="resources/js/angular.min.js"></script>
+	<script src="resources/js/bootstrap.js"></script>
+	<script src="resources/js/file-upload.js"></script>
+	<script src="resources/js/angular-route.js"></script>
+	<!-- endbower -->
+	<!-- endbuild -->
+
+	<!-- build:js({.tmp,app}) scripts/scripts.js -->
+	<script src="resources/scripts/app.js"></script>
+	<script src="resources/scripts/controllers/main.js"></script>
+	<script src="resources/scripts/controllers/CurrencyService.js"></script>
+	<script src="resources/scripts/controllers/CurrencyController.js"></script>
+	<script src="resources/js/sidebar.js" ></script>
+	<script src="resources/js/display-copy.js" ></script>
+
+	<!-- endbuild -->
+</body>
+</html>
+
